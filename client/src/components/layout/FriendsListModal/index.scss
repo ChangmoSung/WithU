@@ -1,0 +1,18 @@
+@import "../../styles/variables";
+
+.friendsListModal {
+  position: absolute;
+  top: 0;
+  border: 1px solid $primaryRed;
+  padding: 1.5rem;
+  font-size: 1.6rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    span:nth-of-type(even) {
+      margin-bottom: 3rem;
+    }
+  }
+}

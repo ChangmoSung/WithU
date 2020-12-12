@@ -10,14 +10,14 @@ const LandingPage = ({ login, isAuthenticated }) => {
     email: "",
     password: "",
   });
-  // const { email, password } = formData;
+  const { email, password } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    login("test@gmail.com", "test123");
+    login(email, password);
   };
 
   if (isAuthenticated) return <Redirect to="/mainPage" />;

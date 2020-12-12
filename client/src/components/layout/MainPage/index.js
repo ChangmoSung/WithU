@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 import "./index.scss";
+import FriendsListModal from "../FriendsListModal/index.js";
 
 const MainPage = () => {
   const [light, setLight] = useState("");
   const [person, setPerson] = useState("");
+  const [friendsListVisibility, toggleFriendsListVisibility] = useState(false);
   const inputEl = useRef("");
 
   const onSubmit = (e) => {
@@ -12,6 +14,8 @@ const MainPage = () => {
       alert("Select a light to send to the person :)");
       return;
     }
+    console.log(light);
+    console.log(person);
   };
   const onChange = (e) => {
     if (!person) {
@@ -24,6 +28,11 @@ const MainPage = () => {
 
   return (
     <div className="container">
+      <span
+        className="toggleModal"
+        onClick={() => toggleFriendsListVisibility(!friendsListVisibility)}
+      ></span>
+      {friendsListVisibility && <FriendsListModal />}
       <div className="wrapper mainPage">
         <h2>Show your emotions :)</h2>
         <div className="findPerson">

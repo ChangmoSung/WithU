@@ -74,9 +74,29 @@ router.post(
   }
 );
 
+// @route GET /users/getFriendsList
+// @desc Get friends list
+// @access Private
+router.get("/getFriendsList", auth, async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const user = await Users.findOne({ _id: req.user.id });
+    if (!user) {
+      return res.status(400).json({ errors: [{ msg: "No matching user" }] });
+    }
+    res.send(user.friends);
+  } catch ({ message = "" }) {
+    console.error(message);
+    res.status(500).send(`Server error - ${message}`);
+  }
+});
+
 // @route PUT /users/addFriend
 // @desc Register user
-// @access Public
+// @access Private
 router.put(
   "/addFriend",
   [

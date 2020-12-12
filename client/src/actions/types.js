@@ -5,3 +5,5 @@ export const LOGOUT = "LOGOUT";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
 export const AUTH_ERROR = "AUTH_ERROR";
+export const FRIENDS_LOADED = "FRIENDS_LOADED";
+export const FRIENDS_LOADED_ERROR = "FRIENDS_LOADED_ERROR";
