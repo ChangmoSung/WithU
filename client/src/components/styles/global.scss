@@ -6,7 +6,9 @@ html {
 }
 
 .container {
-  margin-bottom: 7vmax;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 img {
@@ -15,6 +17,21 @@ img {
 }
 
 .wrapper {
-  width: 85%;
+  width: 40%;
   margin: 0 auto;
+}
+
+input {
+  border: 1px solid $primaryBlue;
+  border-radius: $borderRadius;
+  padding: 1.5rem 2rem;
+}
+
+button {
+  border: none;
+  border-radius: $borderRadius;
+  background: $primaryRed;
+  color: #ffffff;
+  padding: 1.5rem 0;
+  cursor: pointer;
 }
