@@ -33,7 +33,6 @@ module.exports = Users = mongoose.model(
         email: {
           type: String,
           required: true,
-          unique: true,
         },
         sinceWhen: {
           type: Date,
@@ -49,7 +48,6 @@ module.exports = Users = mongoose.model(
         from: {
           type: String,
           required: true,
-          unique: true,
         },
         light: {
           type: String,

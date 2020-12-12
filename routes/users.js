@@ -19,8 +19,8 @@ router.post(
     check("email", "Please include a valid email").isEmail(),
     check(
       "password",
-      "Please enter a password with 6 or more characters"
-    ).isLength({ min: 6 }),
+      "Please enter a password with 3 or more characters"
+    ).isLength({ min: 3 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -68,8 +68,8 @@ router.post(
         }
       );
     } catch ({ message = "" }) {
-      console.error(message);
-      res.status(500).send("Server error");
+      console.error(`Server error - ${message}`);
+      res.status(500).send(message);
     }
   }
 );
@@ -129,7 +129,7 @@ router.put(
       res.send(user);
     } catch ({ message = "" }) {
       console.error(message);
-      res.status(500).send("Server error");
+      res.status(500).send(`Server error - ${message}`);
     }
   }
 );
