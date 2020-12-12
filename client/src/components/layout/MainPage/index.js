@@ -51,7 +51,13 @@ const MainPage = ({ getFriendsList, friendsList }) => {
           <div className={listVisibility && "friends"}>
             {listVisibility &&
               friendsList.map(({ email, firstName }, i) => (
-                <li key={i} onClick={() => setPerson(email)}>
+                <li
+                  key={i}
+                  onClick={() => {
+                    setPerson(email);
+                    toggleListVisibility(!listVisibility);
+                  }}
+                >
                   {firstName}
                 </li>
               ))}

@@ -23,17 +23,17 @@
   }
 
   ul {
+    position: relative;
     padding-left: 0;
     list-style: none;
     margin: 0 auto;
     text-align: center;
     cursor: pointer;
-    position: relative;
 
     .friends {
+      position: absolute;
       border: 1px solid $primaryRed;
       border-radius: $borderRadius;
-      position: absolute;
       width: 100%;
       background: #ffffff;
       margin-top: 1rem;
@@ -41,6 +41,7 @@
       li {
         padding: 2rem;
         color: $primaryRed;
+        cursor: pointer;
 
         &:hover {
           background: $primaryBlue;
