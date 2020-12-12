@@ -1,21 +1,31 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.scss";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getFriendsList } from "../../../actions/users";
 import FriendsListModal from "../FriendsListModal/index.js";
 
-const MainPage = () => {
+const MainPage = ({ getFriendsList, friendsList }) => {
+  useEffect(() => {
+    getFriendsList();
+  }, []);
+
   const [light, setLight] = useState("");
   const [person, setPerson] = useState("");
   const [friendsListVisibility, toggleFriendsListVisibility] = useState(false);
-  const inputEl = useRef("");
+  const [listVisibility, toggleListVisibility] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!light) {
+    if (!person) {
+      alert("Select a person to send a light first :)");
+      return;
+    } else if (!light) {
       alert("Select a light to send to the person :)");
       return;
     }
-    console.log(light);
     console.log(person);
+    console.log(light);
   };
   const onChange = (e) => {
     if (!person) {
@@ -24,7 +34,6 @@ const MainPage = () => {
     }
     setLight(e.target.value);
   };
-  const onClick = (e) => setPerson(inputEl.current.value);
 
   return (
     <div className="container">
@@ -32,18 +41,22 @@ const MainPage = () => {
         className="toggleModal"
         onClick={() => toggleFriendsListVisibility(!friendsListVisibility)}
       ></span>
-      {friendsListVisibility && <FriendsListModal />}
+      {friendsListVisibility && <FriendsListModal friendsList={friendsList} />}
       <div className="wrapper mainPage">
         <h2>Show your emotions :)</h2>
-        <div className="findPerson">
-          <input
-            type="text"
-            className="personName"
-            ref={inputEl}
-            placeholder="Enter the person name"
-          />
-          <button onClick={onClick}>Find</button>
-        </div>
+        <ul>
+          <li onClick={() => toggleListVisibility(!listVisibility)}>
+            Select a friend :)
+          </li>
+          <div className={listVisibility && "friends"}>
+            {listVisibility &&
+              friendsList.map(({ email, firstName }, i) => (
+                <li key={i} onClick={() => setPerson(email)}>
+                  {firstName}
+                </li>
+              ))}
+          </div>
+        </ul>
         <form onSubmit={onSubmit}>
           <div>
             <label htmlFor="red" className="red" />
@@ -70,6 +83,14 @@ const MainPage = () => {
               id="green"
               onChange={onChange}
             />
+            <label htmlFor="orange" className="orange" />
+            <input
+              type="radio"
+              name="light"
+              value="orange"
+              id="orange"
+              onChange={onChange}
+            />
           </div>
           <button>Send</button>
         </form>
@@ -78,4 +99,13 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+MainPage.propTypes = {
+  getFriendsList: PropTypes.func.isRequired,
+  friendsList: PropTypes.array,
+};
+
+const mapStateToProps = (state) => ({
+  friendsList: state.users.friendsList,
+});
+
+export default connect(mapStateToProps, { getFriendsList })(MainPage);

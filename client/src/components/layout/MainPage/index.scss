@@ -22,13 +22,31 @@
     text-align: center;
   }
 
-  .findPerson {
-    input {
-      width: 80%;
-    }
+  ul {
+    padding-left: 0;
+    list-style: none;
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
 
-    button {
-      width: 20%;
+    .friends {
+      border: 1px solid $primaryRed;
+      border-radius: $borderRadius;
+      position: absolute;
+      width: 100%;
+      background: #ffffff;
+      margin-top: 1rem;
+
+      li {
+        padding: 2rem;
+        color: $primaryRed;
+
+        &:hover {
+          background: $primaryBlue;
+          color: #ffffff;
+        }
+      }
     }
   }
 
@@ -63,6 +81,10 @@
 
     .green {
       background: green;
+    }
+
+    .orange {
+      background: orange;
     }
   }
 }

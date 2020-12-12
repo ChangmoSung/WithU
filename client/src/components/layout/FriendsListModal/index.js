@@ -1,14 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import "./index.scss";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getFriendsList } from "../../../actions/users";
 
-const FriendsListModal = ({ getFriendsList, friendsList }) => {
-  useEffect(() => {
-    getFriendsList();
-  }, []);
-
+const FriendsListModal = ({ friendsList }) => {
   return (
     <Fragment>
       {friendsList && friendsList.length && (
@@ -27,12 +21,7 @@ const FriendsListModal = ({ getFriendsList, friendsList }) => {
 };
 
 FriendsListModal.propTypes = {
-  getFriendsList: PropTypes.func.isRequired,
   friendsList: PropTypes.array,
 };
 
-const mapStateToProps = (state) => ({
-  friendsList: state.users.friendsList,
-});
-
-export default connect(mapStateToProps, { getFriendsList })(FriendsListModal);
+export default FriendsListModal;
