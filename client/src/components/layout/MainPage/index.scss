@@ -1,0 +1,57 @@
+@import "../../styles/variables";
+
+.mainPage {
+  border: 1px solid $primaryRed;
+  border-radius: $borderRadius;
+  font-size: 2rem;
+  padding: 5rem 0;
+  color: $primaryBlue;
+
+  h2 {
+    text-align: center;
+  }
+
+  .findPerson {
+    input {
+      width: 80%;
+    }
+
+    button {
+      width: 20%;
+    }
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    div {
+      display: flex;
+      justify-content: space-around;
+      margin: 5rem 0;
+    }
+
+    input {
+      display: none;
+    }
+
+    label {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+    }
+
+    .red {
+      background: red;
+    }
+
+    .blue {
+      background: blue;
+    }
+
+    .green {
+      background: green;
+    }
+  }
+}
