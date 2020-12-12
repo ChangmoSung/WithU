@@ -20,11 +20,36 @@ module.exports = Users = mongoose.model(
       type: String,
       required: true,
     },
+    friends: [
+      {
+        firstName: {
+          type: String,
+          required: true,
+        },
+        lastName: {
+          type: String,
+          required: true,
+        },
+        email: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        sinceWhen: {
+          type: Date,
+          required: true,
+        },
+        lastLightYouSent: {
+          type: String,
+        },
+      },
+    ],
     lights: [
       {
         from: {
           type: String,
           required: true,
+          unique: true,
         },
         light: {
           type: String,
