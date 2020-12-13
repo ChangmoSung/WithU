@@ -10,7 +10,6 @@ app.use(express.json({ extended: false }));
 
 app.use("/users", require("./routes/users"));
 app.use("/auth", require("./routes/auth"));
-app.use("/lights", require("./routes/lights"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
