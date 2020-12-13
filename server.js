@@ -1,8 +1,11 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const path = require("path");
-
+const socketio = require("socket.io");
+const http = require("http");
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
 connectDB();
 
@@ -20,6 +23,11 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+io.on("connection", (socket) => {
+  console.log("id", socket.id);
+  socket.emit("userSignedIn", socket.id);
+});
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server started on port ${PORT}`));

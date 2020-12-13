@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
 import "./index.scss";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -6,8 +7,15 @@ import { getFriendsList } from "../../../actions/users";
 import FriendsListModal from "../FriendsListModal/index.js";
 
 const MainPage = ({ getFriendsList, friendsList }) => {
+  const [userSocketId, setUserSocketId] = useState("");
+
   useEffect(() => {
     getFriendsList();
+    const socket = io();
+    socket.on("userSignedIn", (id) => {
+      setUserSocketId(id);
+      console.log("id", id);
+    });
   }, []);
 
   const [light, setLight] = useState("");
