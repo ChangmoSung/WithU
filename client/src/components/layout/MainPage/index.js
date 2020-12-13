@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.scss";
+import moment from "moment";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -20,13 +21,13 @@ const MainPage = ({
   }, []);
 
   const [light, setLight] = useState("");
-  const [person, setPerson] = useState("");
+  const [personToReceiveLight, setPersonToReceiveLight] = useState("");
   const [friendsListVisibility, toggleFriendsListVisibility] = useState(false);
   const [listVisibility, toggleListVisibility] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!person) {
+    if (!personToReceiveLight) {
       alert("Select a person to send a light first :)");
       return;
     } else if (!light) {
@@ -34,10 +35,22 @@ const MainPage = ({
       return;
     }
 
-    addLight({ person, light });
+    const messages = {
+      red: "I love you",
+      blue: "I believe in you",
+      green: "Please stay healthy and safe",
+      orange: "I encourage you",
+    };
+
+    addLight({
+      personToReceiveLight,
+      light,
+      message: messages[light],
+      removeLightAt: moment().add(24, "hours").toDate(),
+    });
   };
   const onChange = (e) => {
-    if (!person) {
+    if (!personToReceiveLight) {
       alert("Select a person to send a light first :)");
       return;
     }
@@ -66,7 +79,7 @@ const MainPage = ({
                 <li
                   key={i}
                   onClick={() => {
-                    setPerson(email);
+                    setPersonToReceiveLight(email);
                     toggleListVisibility(!listVisibility);
                   }}
                 >

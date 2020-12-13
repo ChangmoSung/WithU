@@ -188,7 +188,9 @@ router.put(
   [
     auth,
     check("light", "Select a light to send to the person :)").not().isEmpty(),
-    check("person", "Select a person to send the light :)").not().isEmpty(),
+    check("personToReceiveLight", "Select a receiver to send the light :)")
+      .not()
+      .isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -196,11 +198,11 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { light, person, message = "", removeLightAt = "" } = req.body;
+    const { light, personToReceiveLight, message, removeLightAt } = req.body;
 
     try {
-      const user = await Users.findOne({ _id: req.user.id });
-      if (user.email === person) {
+      const sender = await Users.findOne({ _id: req.user.id });
+      if (sender.email === personToReceiveLight) {
         res.status(400).json({
           errors: [
             {
@@ -211,22 +213,21 @@ router.put(
         return;
       }
 
-      const sender = await Users.findOne({ email: person });
-      if (!sender) {
+      const receiver = await Users.findOne({ email: personToReceiveLight });
+      if (!receiver) {
         res.status(400).json({
           errors: [
             {
-              msg: "The sender is not an existing user :)",
+              msg: "The receiver is not an existing user :)",
             },
           ],
         });
         return;
       }
 
-      const userAlreadyHasLightFromTheSameUser = user.lights.some(
-        ({ from }) => from === person
+      const userAlreadyHasLightFromTheSameUser = receiver.lights.some(
+        ({ senderEmail }) => senderEmail === sender.email
       );
-
       if (userAlreadyHasLightFromTheSameUser) {
         res.status(400).json({
           errors: [
@@ -238,10 +239,16 @@ router.put(
         return;
       }
 
-      user.lights.unshift({ light, from: person, message, removeLightAt });
+      receiver.lights.unshift({
+        sender: `${sender.firstName} ${sender.lastName}`,
+        senderEmail: sender.email,
+        light,
+        message,
+        removeLightAt,
+      });
 
-      await user.save();
-      res.send(user.lights);
+      await receiver.save();
+      res.send(receiver.lights);
     } catch ({ message = "" }) {
       console.error(message);
       res.status(500).send("Server error");
