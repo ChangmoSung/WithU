@@ -1,8 +1,10 @@
 import {
   FRIENDS_LOADED,
-  ADD_FRIEND,
   FRIENDS_LOADED_ERROR,
+  ADD_FRIEND,
   ADD_FRIEND_ERROR,
+  DELETE_FRIEND,
+  DELETE_FRIEND_ERROR,
 } from "../actions/types";
 
 const initialState = {
@@ -17,6 +19,7 @@ export default function (state = initialState, action) {
   switch (type) {
     case FRIENDS_LOADED:
     case ADD_FRIEND:
+    case DELETE_FRIEND:
       return {
         ...state,
         friendsList: payload,
@@ -24,6 +27,7 @@ export default function (state = initialState, action) {
       };
     case FRIENDS_LOADED_ERROR:
     case ADD_FRIEND_ERROR:
+    case DELETE_FRIEND_ERROR:
       return {
         ...state,
         loading: false,

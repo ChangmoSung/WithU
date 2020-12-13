@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from "react";
 import "./index.scss";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { deleteFriend } from "../../../actions/users";
 import AddFriendModal from "./AddFriendModal/index.js";
 
-const FriendsListModal = ({ friendsList }) => {
+const FriendsListModal = ({ friendsList, deleteFriend }) => {
   const [addFriendModalVisibility, toggleAddFriendModalVisibility] = useState(
     false
   );
@@ -20,12 +22,13 @@ const FriendsListModal = ({ friendsList }) => {
         >
           Add
         </button>
-        {friendsList && friendsList.length && (
+        {friendsList && (
           <Fragment>
             {friendsList.map(({ firstName, email }, i) => (
               <div key={i}>
                 <span>Name: {firstName}</span>
                 <span>Email: {email}</span>
+                <button onClick={() => deleteFriend(email)}>X</button>
               </div>
             ))}
           </Fragment>
@@ -38,6 +41,11 @@ const FriendsListModal = ({ friendsList }) => {
 
 FriendsListModal.propTypes = {
   friendsList: PropTypes.array,
+  deleteFriend: PropTypes.func.isRequired,
 };
 
-export default FriendsListModal;
+const mapStateToProps = (state) => ({
+  friendsList: state.users.friendsList,
+});
+
+export default connect(mapStateToProps, { deleteFriend })(FriendsListModal);

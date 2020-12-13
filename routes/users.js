@@ -95,7 +95,7 @@ router.get("/getFriendsList", auth, async (req, res) => {
 });
 
 // @route PUT /users/addFriend
-// @desc Register user
+// @desc Add friends
 // @access Private
 router.put(
   "/addFriend",
@@ -155,5 +155,29 @@ router.put(
     }
   }
 );
+
+// @route DELETE /users/deleteFriend/:email
+// @desc Delete friends
+// @access Private
+router.delete("/deleteFriend/:email", auth, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) res.status(400).json({ errors: errors.array() });
+
+  try {
+    const user = await Users.findOne({ _id: req.user.id });
+    if (!user) res.status(400).json({ errors: [{ msg: "No matching user" }] });
+
+    const removeIndex = user.friends
+      .map(({ email }) => email)
+      .indexOf(req.params.email);
+    user.friends.splice(removeIndex, 1);
+
+    await user.save();
+    res.send(user.friends);
+  } catch ({ message = "" }) {
+    console.error(message);
+    res.status(500).send(`Server error - ${message}`);
+  }
+});
 
 module.exports = router;
