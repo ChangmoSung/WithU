@@ -6,6 +6,8 @@ import {
   ADD_FRIEND_ERROR,
   DELETE_FRIEND,
   DELETE_FRIEND_ERROR,
+  ADD_LIGHT,
+  ADD_LIGHT_ERROR,
 } from "./types.js";
 
 export const getFriendsList = () => async (dispatch) => {
@@ -58,6 +60,29 @@ export const deleteFriend = (email) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: DELETE_FRIEND_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const addLight = (lightAndPerson) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify(lightAndPerson);
+  try {
+    const res = await axios.put("/users/addLight", body, config);
+
+    dispatch({
+      type: ADD_LIGHT,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: ADD_LIGHT_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

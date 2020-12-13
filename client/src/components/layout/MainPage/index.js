@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getFriendsList } from "../../../actions/users";
+import { addLight } from "../../../actions/users";
 import { signOut } from "../../../actions/auth";
 import FriendsListModal from "../FriendsListModal/index.js";
 
@@ -12,6 +13,7 @@ const MainPage = ({
   isAuthenticated,
   getFriendsList,
   friendsList,
+  addLight,
 }) => {
   useEffect(() => {
     getFriendsList();
@@ -31,8 +33,8 @@ const MainPage = ({
       alert("Select a light to send to the person :)");
       return;
     }
-    console.log(person);
-    console.log(light);
+
+    addLight({ person, light });
   };
   const onChange = (e) => {
     if (!person) {
@@ -120,6 +122,7 @@ MainPage.propTypes = {
   getFriendsList: PropTypes.func.isRequired,
   friendsList: PropTypes.array,
   isAuthenticated: PropTypes.bool.isRequired,
+  addLight: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -127,4 +130,6 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { signOut, getFriendsList })(MainPage);
+export default connect(mapStateToProps, { signOut, getFriendsList, addLight })(
+  MainPage
+);

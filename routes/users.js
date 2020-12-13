@@ -180,4 +180,73 @@ router.delete("/deleteFriend/:email", auth, async (req, res) => {
   }
 });
 
+// @route PUT /users/addLight
+// @desc Add light
+// @access Private
+router.put(
+  "/addLight",
+  [
+    auth,
+    check("light", "Select a light to send to the person :)").not().isEmpty(),
+    check("person", "Select a person to send the light :)").not().isEmpty(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { light, person, message = "", removeLightAt = "" } = req.body;
+
+    try {
+      const user = await Users.findOne({ _id: req.user.id });
+      if (user.email === person) {
+        res.status(400).json({
+          errors: [
+            {
+              msg: "You cannot send yourself a light :)",
+            },
+          ],
+        });
+        return;
+      }
+
+      const sender = await Users.findOne({ email: person });
+      if (!sender) {
+        res.status(400).json({
+          errors: [
+            {
+              msg: "The sender is not an existing user :)",
+            },
+          ],
+        });
+        return;
+      }
+
+      const userAlreadyHasLightFromTheSameUser = user.lights.some(
+        ({ from }) => from === person
+      );
+
+      if (userAlreadyHasLightFromTheSameUser) {
+        res.status(400).json({
+          errors: [
+            {
+              msg: "You can only send a light to the same person once a day :)",
+            },
+          ],
+        });
+        return;
+      }
+
+      user.lights.unshift({ light, from: person, message, removeLightAt });
+
+      await user.save();
+      res.send(user.lights);
+    } catch ({ message = "" }) {
+      console.error(message);
+      res.status(500).send("Server error");
+    }
+  }
+);
+
 module.exports = router;
