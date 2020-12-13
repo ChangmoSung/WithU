@@ -1,21 +1,37 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import "./index.scss";
 import PropTypes from "prop-types";
+import AddFriendModal from "./AddFriendModal/index.js";
 
 const FriendsListModal = ({ friendsList }) => {
+  const [addFriendModalVisibility, toggleAddFriendModalVisibility] = useState(
+    false
+  );
+
   return (
     <Fragment>
-      {friendsList && friendsList.length && (
-        <div className="friendsListModal">
-          <h2>Friends :)</h2>
-          {friendsList.map((friend, i) => (
-            <div key={i}>
-              <span>Name: {friend.firstName}</span>
-              <span>Email: {friend.email}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="friendsListModal">
+        <h2>Friends :)</h2>
+        <button
+          className="addFriendModalOpener"
+          onClick={() =>
+            toggleAddFriendModalVisibility(!addFriendModalVisibility)
+          }
+        >
+          Add
+        </button>
+        {friendsList && friendsList.length && (
+          <Fragment>
+            {friendsList.map(({ firstName, email }, i) => (
+              <div key={i}>
+                <span>Name: {firstName}</span>
+                <span>Email: {email}</span>
+              </div>
+            ))}
+          </Fragment>
+        )}
+      </div>
+      {addFriendModalVisibility && <AddFriendModal />}
     </Fragment>
   );
 };

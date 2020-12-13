@@ -101,8 +101,6 @@ router.put(
   "/addFriend",
   [
     auth,
-    check("firstName", "First name is required").not().isEmpty(),
-    check("lastName", "Last name is required").not().isEmpty(),
     check("email", "Provide an email").isEmail(),
     check("sinceWhen", "Provide the date this friendship started")
       .not()
@@ -114,39 +112,43 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {
-      firstName,
-      lastName,
-      email,
-      sinceWhen,
-      lastLightYouSent = "",
-    } = req.body;
+    const { email, sinceWhen } = req.body;
 
     try {
       const user = await Users.findOne({ _id: req.user.id });
       if (!user) {
         return res.status(400).json({ errors: [{ msg: "No matching user" }] });
+      } else if (user.email === email) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "You cannot add yourself as a friend" }] });
       }
 
-      const friend = user.friends.find(
+      const friendAlreadyOnTheList = user.friends.some(
         ({ email: friendEmail = "" }) => email === friendEmail
       );
-      if (friend) {
+      if (friendAlreadyOnTheList) {
         return res
           .status(400)
           .json({ errors: [{ msg: "This Friend is already on the list" }] });
       }
 
+      const friend = await Users.findOne({ email });
+      if (!friend) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "There is no matching user" }] });
+      }
+
       user.friends.push({
-        firstName,
-        lastName,
+        firstName: friend.firstName,
+        lastName: friend.lastName,
         email,
         sinceWhen,
-        lastLightYouSent,
       });
 
       await user.save();
-      res.send(user);
+      res.send(user.friends);
     } catch ({ message = "" }) {
       console.error(message);
       res.status(500).send(`Server error - ${message}`);

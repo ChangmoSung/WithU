@@ -1,14 +1,11 @@
 @import "../../styles/variables";
 
 .toggleModal {
-  background: $primaryRed;
   width: 5rem;
   height: 5rem;
-  border-radius: $borderRadius;
   position: absolute;
   top: 3rem;
   right: 3rem;
-  cursor: pointer;
 }
 
 .mainPage {

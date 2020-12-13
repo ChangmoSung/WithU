@@ -37,10 +37,10 @@ const MainPage = ({ getFriendsList, friendsList }) => {
 
   return (
     <div className="container">
-      <span
+      <button
         className="toggleModal"
         onClick={() => toggleFriendsListVisibility(!friendsListVisibility)}
-      ></span>
+      ></button>
       {friendsListVisibility && <FriendsListModal friendsList={friendsList} />}
       <div className="wrapper mainPage">
         <h2>Show your emotions :)</h2>
@@ -48,7 +48,7 @@ const MainPage = ({ getFriendsList, friendsList }) => {
           <li onClick={() => toggleListVisibility(!listVisibility)}>
             Select a friend :)
           </li>
-          <div className={listVisibility && "friends"}>
+          <div className={listVisibility ? "friends" : ""}>
             {listVisibility &&
               friendsList.map(({ email, firstName }, i) => (
                 <li
