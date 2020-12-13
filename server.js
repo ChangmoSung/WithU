@@ -23,9 +23,15 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+let users = [];
+
 io.on("connection", (socket) => {
-  console.log("id", socket.id);
-  socket.emit("userSignedIn", socket.id);
+  users = users.push(socket.id);
+  socket.emit("userSignedIn", users, socket.id);
+
+  socket.on("userSignedOut", (userId) => {
+    users = users.filter((user) => user !== userId);
+  });
 });
 
 const PORT = process.env.PORT || 5000;

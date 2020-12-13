@@ -7,15 +7,18 @@ import { getFriendsList } from "../../../actions/users";
 import FriendsListModal from "../FriendsListModal/index.js";
 
 const MainPage = ({ getFriendsList, friendsList }) => {
+  const [userSocketIds, setUserSocketIds] = useState([]);
   const [userSocketId, setUserSocketId] = useState("");
 
   useEffect(() => {
     getFriendsList();
     const socket = io();
-    socket.on("userSignedIn", (id) => {
-      setUserSocketId(id);
-      console.log("id", id);
+    socket.on("userSignedIn", (otherUsers, user) => {
+      setUserSocketIds(otherUsers);
+      setUserSocketId(user);
     });
+
+    socket.emit("userSignedOut", userSocketId);
   }, []);
 
   const [light, setLight] = useState("");
