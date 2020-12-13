@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./index.scss";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getFriendsList } from "../../../actions/users";
+import { signOut } from "../../../actions/auth";
 import FriendsListModal from "../FriendsListModal/index.js";
 
-const MainPage = ({ getFriendsList, friendsList }) => {
+const MainPage = ({
+  signOut,
+  isAuthenticated,
+  getFriendsList,
+  friendsList,
+}) => {
   useEffect(() => {
     getFriendsList();
   }, []);
@@ -35,12 +42,15 @@ const MainPage = ({ getFriendsList, friendsList }) => {
     setLight(e.target.value);
   };
 
+  if (!isAuthenticated) return <Redirect to="/" />;
+
   return (
     <div className="container">
       <button
         className="toggleModal"
         onClick={() => toggleFriendsListVisibility(!friendsListVisibility)}
       ></button>
+      <button className="signOut" onClick={() => signOut()}></button>
       {friendsListVisibility && <FriendsListModal friendsList={friendsList} />}
       <div className="wrapper mainPage">
         <h2>Show your emotions :)</h2>
@@ -106,12 +116,15 @@ const MainPage = ({ getFriendsList, friendsList }) => {
 };
 
 MainPage.propTypes = {
+  signOut: PropTypes.func.isRequired,
   getFriendsList: PropTypes.func.isRequired,
   friendsList: PropTypes.array,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   friendsList: state.users.friendsList,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { getFriendsList })(MainPage);
+export default connect(mapStateToProps, { signOut, getFriendsList })(MainPage);

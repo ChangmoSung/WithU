@@ -1,9 +1,18 @@
 @import "../../styles/variables";
 
-.toggleModal {
+.toggleModal,
+.signOut {
   width: 5rem;
   height: 5rem;
   position: absolute;
+}
+
+.toggleModal {
+  top: 3rem;
+  right: 10rem;
+}
+
+.signOut {
   top: 3rem;
   right: 3rem;
 }

@@ -3,7 +3,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   USER_LOADED,
-  LOGOUT,
+  SIGN_OUT,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   AUTH_ERROR,
@@ -53,7 +53,7 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-export const logout = () => (dispatch) => dispatch({ type: LOGOUT });
+export const signOut = () => (dispatch) => dispatch({ type: SIGN_OUT });
 
 export const signUp = (user) => async (dispatch) => {
   const config = {
