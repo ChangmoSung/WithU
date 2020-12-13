@@ -8,6 +8,8 @@ import {
   DELETE_FRIEND_ERROR,
   ADD_LIGHT,
   ADD_LIGHT_ERROR,
+  LIGHTS_LOADED,
+  LIGHTS_LOADED_ERROR,
 } from "./types.js";
 
 export const getFriendsList = () => async (dispatch) => {
@@ -60,6 +62,22 @@ export const deleteFriend = (email) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: DELETE_FRIEND_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const getLights = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/users/getLights");
+
+    dispatch({
+      type: LIGHTS_LOADED,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: LIGHTS_LOADED_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

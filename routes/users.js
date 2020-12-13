@@ -180,6 +180,34 @@ router.delete("/deleteFriend/:email", auth, async (req, res) => {
   }
 });
 
+// @route GET /users/getLights
+// @desc Get lights
+// @access Private
+
+router.get("/getLights", auth, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  try {
+    const user = await Users.findOne({ _id: req.user.id });
+    if (!user) {
+      res.status(400).json({
+        errors: [
+          {
+            msg: "There is no authorized user :)",
+          },
+        ],
+      });
+      return;
+    }
+    res.send(user.lights);
+  } catch ({ message }) {
+    console.error(message);
+    res.status(500).send("Server error");
+  }
+});
+
 // @route PUT /users/addLight
 // @desc Add light
 // @access Private

@@ -1,20 +1,24 @@
 @import "../../styles/variables";
 
 .toggleModal,
-.signOut {
+.signOut,
+.showLights {
   width: 5rem;
   height: 5rem;
   position: absolute;
+  top: 3rem;
 }
 
 .toggleModal {
-  top: 3rem;
   right: 10rem;
 }
 
 .signOut {
-  top: 3rem;
   right: 3rem;
+}
+
+.showLights {
+  right: 17rem;
 }
 
 .mainPage {

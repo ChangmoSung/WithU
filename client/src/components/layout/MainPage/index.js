@@ -4,10 +4,10 @@ import moment from "moment";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getFriendsList } from "../../../actions/users";
-import { addLight } from "../../../actions/users";
+import { getFriendsList, addLight, getLights } from "../../../actions/users";
 import { signOut } from "../../../actions/auth";
 import FriendsListModal from "../FriendsListModal/index.js";
+import LightsListModal from "../LightsListModal/index.js";
 
 const MainPage = ({
   signOut,
@@ -15,15 +15,18 @@ const MainPage = ({
   getFriendsList,
   friendsList,
   addLight,
+  getLights,
 }) => {
   useEffect(() => {
     getFriendsList();
-  }, []);
+    getLights();
+  }, [getFriendsList, getLights]);
 
   const [light, setLight] = useState("");
   const [personToReceiveLight, setPersonToReceiveLight] = useState("");
   const [friendsListVisibility, toggleFriendsListVisibility] = useState(false);
   const [listVisibility, toggleListVisibility] = useState(false);
+  const [lightsListVisibility, toggleLightsListVisibility] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -64,9 +67,20 @@ const MainPage = ({
       <button
         className="toggleModal"
         onClick={() => toggleFriendsListVisibility(!friendsListVisibility)}
-      ></button>
-      <button className="signOut" onClick={() => signOut()}></button>
-      {friendsListVisibility && <FriendsListModal friendsList={friendsList} />}
+      >
+        Friends list
+      </button>
+      <button className="signOut" onClick={() => signOut()}>
+        Sign out
+      </button>
+      <button
+        className="showLights"
+        onClick={() => toggleLightsListVisibility(!lightsListVisibility)}
+      >
+        Show lights
+      </button>
+      {friendsListVisibility && <FriendsListModal />}
+      {lightsListVisibility && <LightsListModal />}
       <div className="wrapper mainPage">
         <h2>Show your emotions :)</h2>
         <ul>
@@ -136,6 +150,7 @@ MainPage.propTypes = {
   friendsList: PropTypes.array,
   isAuthenticated: PropTypes.bool.isRequired,
   addLight: PropTypes.func.isRequired,
+  getLights: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -143,6 +158,9 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { signOut, getFriendsList, addLight })(
-  MainPage
-);
+export default connect(mapStateToProps, {
+  signOut,
+  getFriendsList,
+  addLight,
+  getLights,
+})(MainPage);

@@ -7,6 +7,8 @@ import {
   DELETE_FRIEND_ERROR,
   ADD_LIGHT,
   ADD_LIGHT_ERROR,
+  LIGHTS_LOADED,
+  LIGHTS_LOADED_ERROR,
 } from "../actions/types";
 
 const initialState = {
@@ -20,7 +22,7 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case ADD_LIGHT:
+    case LIGHTS_LOADED:
       return {
         ...state,
         lights: payload,
@@ -38,6 +40,7 @@ export default function (state = initialState, action) {
     case ADD_FRIEND_ERROR:
     case DELETE_FRIEND_ERROR:
     case ADD_LIGHT_ERROR:
+    case LIGHTS_LOADED_ERROR:
       return {
         ...state,
         loading: false,
