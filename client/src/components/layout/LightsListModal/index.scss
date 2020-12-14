@@ -1,0 +1,50 @@
+@import "../../styles/variables";
+
+.LightsListModal {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 1px solid $primaryRed;
+  padding: 1.5rem;
+  font-size: 1.6rem;
+  width: 20%;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      margin-bottom: 1rem;
+    }
+
+    button {
+      margin: 1rem 0 5rem;
+      padding: 1rem 0;
+    }
+
+    .red,
+    .blue,
+    .green,
+    .orange {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+    }
+
+    .red {
+      background: red;
+    }
+
+    .blue {
+      background: blue;
+    }
+
+    .green {
+      background: green;
+    }
+
+    .orange {
+      background: orange;
+    }
+  }
+}

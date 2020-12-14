@@ -5,22 +5,21 @@ import PropTypes from "prop-types";
 
 const LightsListModal = ({ lights }) => {
   return (
-    <Fragment>
-      <div className="LightsListModal">
-        <h2>Lights :)</h2>
-        {lights && (
-          <Fragment>
-            {lights.map(({ sender, light, message }, i) => (
-              <div key={i}>
-                <span>Name: {sender}</span>
-                <span>Email: {light}</span>
-                <span>Message: {message}</span>
-              </div>
-            ))}
-          </Fragment>
-        )}
-      </div>
-    </Fragment>
+    <div className="LightsListModal">
+      <h2>Lights :)</h2>
+      {lights && (
+        <Fragment>
+          {lights.map(({ sender, light, message }, i) => (
+            <div key={i}>
+              <span>From {sender}</span>
+              <span className={light}></span>
+              <span>Message: {message}</span>
+              <button>Reply</button>
+            </div>
+          ))}
+        </Fragment>
+      )}
+    </div>
   );
 };
 
