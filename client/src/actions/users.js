@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setAlert } from "./alerts";
 import {
   FRIENDS_LOADED,
   FRIENDS_LOADED_ERROR,
@@ -43,6 +44,7 @@ export const addFriend = (friendInfo) => async (dispatch) => {
       type: ADD_FRIEND,
       payload: res.data,
     });
+    dispatch(setAlert("Friend added", "success"));
   } catch (err) {
     dispatch({
       type: ADD_FRIEND_ERROR,
@@ -59,6 +61,7 @@ export const deleteFriend = (email) => async (dispatch) => {
       type: DELETE_FRIEND,
       payload: res.data,
     });
+    dispatch(setAlert("Friend deleted", "danger"));
   } catch (err) {
     dispatch({
       type: DELETE_FRIEND_ERROR,
@@ -98,6 +101,7 @@ export const addLight = (lightAndPerson) => async (dispatch) => {
       type: ADD_LIGHT,
       payload: res.data,
     });
+    dispatch(setAlert("Light Sent", "success"));
   } catch (err) {
     dispatch({
       type: ADD_LIGHT_ERROR,

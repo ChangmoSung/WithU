@@ -17,9 +17,10 @@ const LightsListModal = ({ lights }) => {
         <Fragment>
           {lights.map(({ sender, senderEmail, light, message }, i) => (
             <div key={i}>
-              <span>From {sender}</span>
-              <span className={light}></span>
-              <span>Message: {message}</span>
+              <p>
+                <span className={light}></span> From {sender}
+              </p>
+              <p>Message: {message}</p>
               <button onClick={() => toggleLightsReplyModalVisibility(true)}>
                 Reply
               </button>
