@@ -16,11 +16,17 @@
     p {
       display: flex;
       align-items: center;
+      margin: 1rem 0;
     }
 
-    button {
-      margin: 1rem 0 5rem;
-      padding: 1rem 0;
+    .buttonContainer {
+      flex-direction: row;
+      justify-content: space-around;
+      margin: 1rem 0 3rem;
+
+      button {
+        width: 35%;
+      }
     }
 
     .red,

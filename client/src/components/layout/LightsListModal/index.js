@@ -3,8 +3,9 @@ import "./index.scss";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import LightsReplyModal from "./LightsReplyModal/index.js";
+import { deleteLight } from "../../../actions/users";
 
-const LightsListModal = ({ lights }) => {
+const LightsListModal = ({ lights, deleteLight }) => {
   const [
     lightsReplyModalVisibility,
     toggleLightsReplyModalVisibility,
@@ -21,9 +22,12 @@ const LightsListModal = ({ lights }) => {
                 <span className={light}></span> From {sender}
               </p>
               <p>Message: {message}</p>
-              <button onClick={() => toggleLightsReplyModalVisibility(true)}>
-                Reply
-              </button>
+              <div className="buttonContainer">
+                <button onClick={() => toggleLightsReplyModalVisibility(true)}>
+                  Reply
+                </button>
+                <button onClick={() => deleteLight(senderEmail)}>Delete</button>
+              </div>
               {lightsReplyModalVisibility && (
                 <LightsReplyModal
                   toggleLightsReplyModalVisibility={
@@ -43,10 +47,11 @@ const LightsListModal = ({ lights }) => {
 
 LightsListModal.propTypes = {
   lights: PropTypes.array,
+  deleteLight: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   lights: state.users.lights,
 });
 
-export default connect(mapStateToProps)(LightsListModal);
+export default connect(mapStateToProps, { deleteLight })(LightsListModal);
