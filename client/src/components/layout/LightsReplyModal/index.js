@@ -3,7 +3,7 @@ import "./index.scss";
 import moment from "moment";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addLight } from "../../../../actions/users";
+import { addLight } from "../../../actions/users";
 
 const LightsReplyModal = ({
   addLight,

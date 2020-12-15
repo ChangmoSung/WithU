@@ -1,10 +1,11 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./index.scss";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getFriendsList, deleteFriend } from "../../../actions/users";
-import AddFriendModal from "./AddFriendModal/index.js";
+import LightsReplyModal from "../LightsReplyModal/index.js";
+// import AddFriendModal from "./AddFriendModal/index.js";
 
 const FriendsListModal = ({
   getFriendsList,
@@ -12,6 +13,14 @@ const FriendsListModal = ({
   friendsList,
   isAuthenticated,
 }) => {
+  const [isLightsReplyModalVisible, toggleIsLightsReplyModalVisible] = useState(
+    false
+  );
+  const [receiverInfo, setReceiverInfo] = useState({
+    personToReceiveLight: "",
+    receiverName: "",
+  });
+
   useEffect(() => {
     getFriendsList();
   }, [getFriendsList]);
@@ -24,14 +33,32 @@ const FriendsListModal = ({
         <h2>Friends List</h2>
         {friendsList && (
           <Fragment>
-            {friendsList.map(({ firstName, email }, i) => (
+            {friendsList.map(({ firstName, lastName, email }, i) => (
               <div key={i}>
                 <span>{firstName}</span>
-                <button>Send light</button>
+                <button
+                  onClick={() => {
+                    setReceiverInfo({
+                      personToReceiveLight: email,
+                      receiverName: `${firstName} ${lastName}`,
+                    });
+                    toggleIsLightsReplyModalVisible(true);
+                  }}
+                >
+                  Send light
+                </button>
                 <button onClick={() => deleteFriend(email)}>X</button>
                 {/* <AddFriendModal /> */}
               </div>
             ))}
+            {isLightsReplyModalVisible && (
+              <LightsReplyModal
+                toggleIsLightsReplyModalVisible={
+                  toggleIsLightsReplyModalVisible
+                }
+                receiverInfo={receiverInfo}
+              />
+            )}
           </Fragment>
         )}
       </div>

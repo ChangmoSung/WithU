@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getLights, deleteLight } from "../../../actions/users";
-import LightsReplyModal from "./LightsReplyModal/index.js";
+import LightsReplyModal from "../LightsReplyModal/index.js";
 
 const LightsListModal = ({
   isAuthenticated,
