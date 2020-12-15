@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./index.scss";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getLights, deleteLight } from "../../../actions/users";
+import LightsReplyModal from "./LightsReplyModal/index.js";
 
 const LightsListModal = ({
   isAuthenticated,
@@ -11,6 +12,14 @@ const LightsListModal = ({
   getLights,
   deleteLight,
 }) => {
+  const [isLightsReplyModalVisible, toggleIsLightsReplyModalVisible] = useState(
+    false
+  );
+  const [receiverInfo, setReceiverInfo] = useState({
+    personToReceiveLight: "",
+    receiverName: "",
+  });
+
   useEffect(() => {
     getLights();
   }, [getLights]);
@@ -19,18 +28,34 @@ const LightsListModal = ({
 
   return (
     <div className="LightsListModal">
-      <h2>Lights :)</h2>
+      <h2>My lights</h2>
       {lights && (
         <Fragment>
           {lights.map(({ sender, senderEmail, light, message }, i) => (
-            <div key={i}>
-              <span className={light}></span>
+            <div key={i} className="individualLight">
+              <span className={`light ${light}Light`}></span>
               <span>From {sender}</span>
               <span>{message}</span>
-              <button>Reply</button>
+              <button
+                onClick={() => {
+                  setReceiverInfo({
+                    personToReceiveLight: senderEmail,
+                    receiverName: sender,
+                  });
+                  toggleIsLightsReplyModalVisible(true);
+                }}
+              >
+                Reply
+              </button>
               <button onClick={() => deleteLight(senderEmail)}>Delete</button>
             </div>
           ))}
+          {isLightsReplyModalVisible && (
+            <LightsReplyModal
+              toggleIsLightsReplyModalVisible={toggleIsLightsReplyModalVisible}
+              receiverInfo={receiverInfo}
+            />
+          )}
         </Fragment>
       )}
     </div>

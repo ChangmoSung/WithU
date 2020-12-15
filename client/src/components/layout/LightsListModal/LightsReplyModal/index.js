@@ -7,9 +7,8 @@ import { addLight } from "../../../../actions/users";
 
 const LightsReplyModal = ({
   addLight,
-  toggleLightsReplyModalVisibility,
-  personToReceiveLight,
-  receiverName,
+  toggleIsLightsReplyModalVisible,
+  receiverInfo: { personToReceiveLight, receiverName },
 }) => {
   const onChange = (e) => {
     const light = e.target.value;
@@ -32,49 +31,57 @@ const LightsReplyModal = ({
 
   return (
     <div className="lightsReplyModal">
-      <h3>Reply lights here :)</h3>
-      <button
-        className="closeReplyModalButton"
-        onClick={() => toggleLightsReplyModalVisibility(false)}
-      >
-        X
-      </button>
+      <button onClick={() => toggleIsLightsReplyModalVisible(false)}>X</button>
       <span>To {receiverName}</span>
       <form>
-        <div className="replyLights">
-          <label htmlFor="red" className="red" />
-          <input
-            type="radio"
-            name="light"
-            value="red"
-            id="red"
-            onChange={onChange}
-          />
-          <label htmlFor="blue" className="blue" />
-          <input
-            type="radio"
-            name="light"
-            value="blue"
-            id="blue"
-            onChange={onChange}
-          />
-          <label htmlFor="green" className="green" />
-          <input
-            type="radio"
-            name="light"
-            value="green"
-            id="green"
-            onChange={onChange}
-          />
-          <label htmlFor="orange" className="orange" />
-          <input
-            type="radio"
-            name="light"
-            value="orange"
-            id="orange"
-            onChange={onChange}
-          />
-        </div>
+        <label htmlFor="red" className="light redLight" />
+        <input
+          type="radio"
+          name="light"
+          value="red"
+          id="red"
+          onChange={onChange}
+        />
+        <label htmlFor="blue" className="light blueLight" />
+        <input
+          type="radio"
+          name="light"
+          value="blue"
+          id="blue"
+          onChange={onChange}
+        />
+        <label htmlFor="green" className="light greenLight" />
+        <input
+          type="radio"
+          name="light"
+          value="green"
+          id="green"
+          onChange={onChange}
+        />
+        <label htmlFor="orange" className="light orangeLight" />
+        <input
+          type="radio"
+          name="light"
+          value="orange"
+          id="orange"
+          onChange={onChange}
+        />
+        <label htmlFor="purple" className="light purpleLight" />
+        <input
+          type="radio"
+          name="light"
+          value="purple"
+          id="purple"
+          onChange={onChange}
+        />
+        <label htmlFor="brown" className="light brownLight" />
+        <input
+          type="radio"
+          name="light"
+          value="brown"
+          id="brown"
+          onChange={onChange}
+        />
       </form>
     </div>
   );

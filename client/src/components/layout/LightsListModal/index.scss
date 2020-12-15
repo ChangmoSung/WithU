@@ -9,35 +9,9 @@
     text-align: center;
   }
 
-  div {
+  .individualLight {
     display: flex;
     justify-content: space-between;
     padding: 2rem 0;
-
-    .red,
-    .blue,
-    .green,
-    .orange {
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 50%;
-      margin-right: 1rem;
-    }
-
-    .red {
-      background: red;
-    }
-
-    .blue {
-      background: blue;
-    }
-
-    .green {
-      background: green;
-    }
-
-    .orange {
-      background: orange;
-    }
   }
 }

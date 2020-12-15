@@ -2,39 +2,68 @@
 
 .lightsReplyModal {
   position: absolute;
-  top: 0;
-  right: 0;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
   background: #ffffff;
-  width: 200%;
   border: 1px solid $primaryRed;
-  z-index: 1;
   border-radius: $borderRadius;
-  padding: 2rem;
+  padding: 1.5rem;
 
-  .closeReplyModalButton {
+  button {
     position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
-    width: 4rem;
-    height: 4rem;
-    margin-top: 0;
+    top: 1.5rem;
+    right: 1.5rem;
+    padding: 1.5rem;
   }
 
-  .replyLights {
+  form {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 5rem 0;
+    position: absolute;
+    top: 7.5%;
+    left: 7.5%;
+    width: 85%;
+    height: 85%;
 
     input {
       display: none;
     }
 
-    label {
-      width: 5rem;
-      height: 5rem;
-      border-radius: 50%;
-      cursor: pointer;
+    .redLight {
+      position: absolute;
+      top: 15%;
+      left: calc(50% - 0.75rem);
+    }
+
+    .blueLight {
+      position: absolute;
+      bottom: 15%;
+      left: calc(50% - 0.75rem);
+    }
+
+    .greenLight {
+      position: absolute;
+      top: 32.5%;
+      left: calc(20% - 0.75rem);
+    }
+
+    .orangeLight {
+      position: absolute;
+      top: 32.5%;
+      left: calc(80% - 0.75rem);
+    }
+
+    .purpleLight {
+      position: absolute;
+      top: 67.5%;
+      left: calc(20% - 0.75rem);
+    }
+
+    .brownLight {
+      position: absolute;
+      top: 67.5%;
+      left: calc(80% - 0.75rem);
     }
   }
 }
