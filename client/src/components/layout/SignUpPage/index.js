@@ -27,7 +27,7 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
     }
   };
 
-  if (isAuthenticated) return <Redirect to="/mainPage" />;
+  if (isAuthenticated) return <Redirect to="/friendsList" />;
 
   return (
     <div className="container">

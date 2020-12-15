@@ -20,7 +20,7 @@ const LandingPage = ({ login, isAuthenticated }) => {
     login(email, password);
   };
 
-  if (isAuthenticated) return <Redirect to="/mainPage" />;
+  if (isAuthenticated) return <Redirect to="/friendsList" />;
 
   return (
     <div className="container">

@@ -1,15 +1,21 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import "./index.scss";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import LightsReplyModal from "./LightsReplyModal/index.js";
-import { deleteLight } from "../../../actions/users";
+import { getLights, deleteLight } from "../../../actions/users";
 
-const LightsListModal = ({ lights, deleteLight }) => {
-  const [
-    lightsReplyModalVisibility,
-    toggleLightsReplyModalVisibility,
-  ] = useState(false);
+const LightsListModal = ({
+  isAuthenticated,
+  lights,
+  getLights,
+  deleteLight,
+}) => {
+  useEffect(() => {
+    getLights();
+  }, [getLights]);
+
+  if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
     <div className="LightsListModal">
@@ -18,25 +24,11 @@ const LightsListModal = ({ lights, deleteLight }) => {
         <Fragment>
           {lights.map(({ sender, senderEmail, light, message }, i) => (
             <div key={i}>
-              <p>
-                <span className={light}></span> From {sender}
-              </p>
-              <p>Message: {message}</p>
-              <div className="buttonContainer">
-                <button onClick={() => toggleLightsReplyModalVisibility(true)}>
-                  Reply
-                </button>
-                <button onClick={() => deleteLight(senderEmail)}>Delete</button>
-              </div>
-              {lightsReplyModalVisibility && (
-                <LightsReplyModal
-                  toggleLightsReplyModalVisibility={
-                    toggleLightsReplyModalVisibility
-                  }
-                  personToReceiveLight={senderEmail}
-                  receiverName={sender}
-                />
-              )}
+              <span className={light}></span>
+              <span>From {sender}</span>
+              <span>{message}</span>
+              <button>Reply</button>
+              <button onClick={() => deleteLight(senderEmail)}>Delete</button>
             </div>
           ))}
         </Fragment>
@@ -47,11 +39,16 @@ const LightsListModal = ({ lights, deleteLight }) => {
 
 LightsListModal.propTypes = {
   lights: PropTypes.array,
+  isAuthenticated: PropTypes.bool,
+  getLights: PropTypes.func.isRequired,
   deleteLight: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   lights: state.users.lights,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { deleteLight })(LightsListModal);
+export default connect(mapStateToProps, { getLights, deleteLight })(
+  LightsListModal
+);

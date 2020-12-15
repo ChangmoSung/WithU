@@ -1,39 +1,23 @@
 @import "../../styles/variables";
 
 .LightsListModal {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  width: 50%;
   border: 1px solid $primaryRed;
   padding: 1.5rem;
-  font-size: 1.6rem;
-  width: 20%;
+
+  h2 {
+    text-align: center;
+  }
 
   div {
     display: flex;
-    flex-direction: column;
-
-    p {
-      display: flex;
-      align-items: center;
-      margin: 1rem 0;
-    }
-
-    .buttonContainer {
-      flex-direction: row;
-      justify-content: space-around;
-      margin: 1rem 0 3rem;
-
-      button {
-        width: 35%;
-      }
-    }
+    justify-content: space-between;
+    padding: 2rem 0;
 
     .red,
     .blue,
     .green,
     .orange {
-      display: inline-block;
       width: 1.5rem;
       height: 1.5rem;
       border-radius: 50%;
