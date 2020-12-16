@@ -34,6 +34,7 @@ const LandingPage = ({ login, isAuthenticated }) => {
             onChange={onChange}
             placeholder="Email"
             aria-label="Email"
+            required
           />
           <input
             type="password"
@@ -41,6 +42,7 @@ const LandingPage = ({ login, isAuthenticated }) => {
             onChange={onChange}
             placeholder="Password"
             aria-label="Password"
+            required
           />
           <button>Log in</button>
         </form>

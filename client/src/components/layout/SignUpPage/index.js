@@ -41,6 +41,7 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
             onChange={onChange}
             placeholder="First name"
             aria-label="First name"
+            required
           />
           <input
             type="text"
@@ -48,6 +49,7 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
             onChange={onChange}
             placeholder="Last name"
             aria-label="Last name"
+            required
           />
           <input
             type="email"
@@ -55,6 +57,7 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
             onChange={onChange}
             placeholder="Email"
             aria-label="Email"
+            required
           />
           <input
             type="password"
@@ -62,13 +65,15 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
             onChange={onChange}
             placeholder="Password"
             aria-label="Password"
+            required
           />
           <input
             type="password"
             name="password2"
             onChange={onChange}
-            placeholder="Password2"
-            aria-label="Password2"
+            placeholder="Confirm password"
+            aria-label="Confirm password"
+            required
           />
           <button>Sign up</button>
         </form>

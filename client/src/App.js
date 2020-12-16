@@ -21,8 +21,8 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Navbar />
-        <Route exact path="/" component={LandingPage} />
         <div className="container">
+          <Route exact path="/" component={LandingPage} />
           <Alert />
           <Switch>
             <Route exact path="/lightsList" component={LightsListModal} />
