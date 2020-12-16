@@ -7,6 +7,7 @@ import SignUpPage from "./components/layout/SignUpPage/index.js";
 import FriendsListModal from "./components/layout/FriendsListModal/index.js";
 import LightsListModal from "./components/layout/LightsListModal/index.js";
 import Alert from "./components/layout/Alert/index.js";
+import PrivateRoute from "./components/routing/PrivateRoute/index.js";
 
 import store from "./store";
 import { Provider } from "react-redux";
@@ -25,9 +26,17 @@ const App = () => {
           <Route exact path="/" component={LandingPage} />
           <Alert />
           <Switch>
-            <Route exact path="/lightsList" component={LightsListModal} />
-            <Route exact path="/friendsList" component={FriendsListModal} />
             <Route exact path="/signUpPage" component={SignUpPage} />
+            <PrivateRoute
+              exact
+              path="/lightsList"
+              component={LightsListModal}
+            />
+            <PrivateRoute
+              exact
+              path="/friendsList"
+              component={FriendsListModal}
+            />
           </Switch>
         </div>
       </Router>
