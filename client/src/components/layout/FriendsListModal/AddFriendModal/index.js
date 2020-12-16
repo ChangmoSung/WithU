@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addFriend } from "../../../../actions/users";
 
-const AddFriendModal = ({ addFriend }) => {
+const AddFriendModal = ({ toggleIsAddFriendsModalVisible, addFriend }) => {
   const [friendEmail, setFriendEmail] = useState("");
 
   const onSubmit = (e) => {
@@ -13,9 +13,15 @@ const AddFriendModal = ({ addFriend }) => {
   };
 
   return (
-    <div className="addFriendModal">
-      <h3>Add friends here :)</h3>
-      <form onSubmit={onSubmit}>
+    <div className="modal">
+      <h3>Add friends</h3>
+      <button
+        className="closeModalButton"
+        onClick={() => toggleIsAddFriendsModalVisible(false)}
+      >
+        X
+      </button>
+      <form className="formToSearchFriends" onSubmit={onSubmit}>
         <input
           type="email"
           name="email"
@@ -31,6 +37,7 @@ const AddFriendModal = ({ addFriend }) => {
 
 AddFriendModal.propTypes = {
   addFriend: PropTypes.func.isRequired,
+  toggleIsAddFriendsModalVisible: PropTypes.bool.isRequired,
 };
 
 export default connect(null, { addFriend })(AddFriendModal);

@@ -68,3 +68,22 @@ button {
 .brownLight {
   background: brown;
 }
+
+.modal {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  background: #ffffff;
+  border: 1px solid $primaryRed;
+  border-radius: $borderRadius;
+  padding: 1.5rem;
+
+  .closeModalButton {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    padding: 1.5rem;
+  }
+}

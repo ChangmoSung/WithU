@@ -1,69 +1,50 @@
 @import "../../styles/variables";
 
-.lightsReplyModal {
+.formToReplyLight {
+  display: flex;
   position: absolute;
-  width: 60%;
-  height: 60%;
-  top: 20%;
-  left: 20%;
-  background: #ffffff;
-  border: 1px solid $primaryRed;
-  border-radius: $borderRadius;
-  padding: 1.5rem;
+  top: 7.5%;
+  left: 7.5%;
+  width: 85%;
+  height: 85%;
 
-  button {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    padding: 1.5rem;
+  input {
+    display: none;
   }
 
-  form {
-    display: flex;
+  .redLight {
     position: absolute;
-    top: 7.5%;
-    left: 7.5%;
-    width: 85%;
-    height: 85%;
+    top: 15%;
+    left: calc(50% - 0.75rem);
+  }
 
-    input {
-      display: none;
-    }
+  .blueLight {
+    position: absolute;
+    bottom: 15%;
+    left: calc(50% - 0.75rem);
+  }
 
-    .redLight {
-      position: absolute;
-      top: 15%;
-      left: calc(50% - 0.75rem);
-    }
+  .greenLight {
+    position: absolute;
+    top: 32.5%;
+    left: calc(20% - 0.75rem);
+  }
 
-    .blueLight {
-      position: absolute;
-      bottom: 15%;
-      left: calc(50% - 0.75rem);
-    }
+  .orangeLight {
+    position: absolute;
+    top: 32.5%;
+    left: calc(80% - 0.75rem);
+  }
 
-    .greenLight {
-      position: absolute;
-      top: 32.5%;
-      left: calc(20% - 0.75rem);
-    }
+  .purpleLight {
+    position: absolute;
+    top: 67.5%;
+    left: calc(20% - 0.75rem);
+  }
 
-    .orangeLight {
-      position: absolute;
-      top: 32.5%;
-      left: calc(80% - 0.75rem);
-    }
-
-    .purpleLight {
-      position: absolute;
-      top: 67.5%;
-      left: calc(20% - 0.75rem);
-    }
-
-    .brownLight {
-      position: absolute;
-      top: 67.5%;
-      left: calc(80% - 0.75rem);
-    }
+  .brownLight {
+    position: absolute;
+    top: 67.5%;
+    left: calc(80% - 0.75rem);
   }
 }

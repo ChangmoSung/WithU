@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getFriendsList, deleteFriend } from "../../../actions/users";
 import LightsReplyModal from "../LightsReplyModal/index.js";
-// import AddFriendModal from "./AddFriendModal/index.js";
+import AddFriendModal from "./AddFriendModal/index.js";
 
 const FriendsListModal = ({
   getFriendsList,
@@ -13,6 +13,9 @@ const FriendsListModal = ({
   friendsList,
   isAuthenticated,
 }) => {
+  const [isAddFriendsModalVisible, toggleIsAddFriendsModalVisible] = useState(
+    false
+  );
   const [isLightsReplyModalVisible, toggleIsLightsReplyModalVisible] = useState(
     false
   );
@@ -31,10 +34,16 @@ const FriendsListModal = ({
     <Fragment>
       <div className="friendsListModal">
         <h2>Friends List</h2>
+        <button
+          className="openAddFriendsModalButton"
+          onClick={() => toggleIsAddFriendsModalVisible(true)}
+        >
+          Add friends
+        </button>
         {friendsList && (
           <Fragment>
             {friendsList.map(({ firstName, lastName, email }, i) => (
-              <div key={i}>
+              <div key={i} className="individualFriend">
                 <span>{firstName}</span>
                 <button
                   onClick={() => {
@@ -48,9 +57,13 @@ const FriendsListModal = ({
                   Send light
                 </button>
                 <button onClick={() => deleteFriend(email)}>X</button>
-                {/* <AddFriendModal /> */}
               </div>
             ))}
+            {isAddFriendsModalVisible && (
+              <AddFriendModal
+                toggleIsAddFriendsModalVisible={toggleIsAddFriendsModalVisible}
+              />
+            )}
             {isLightsReplyModalVisible && (
               <LightsReplyModal
                 toggleIsLightsReplyModalVisible={

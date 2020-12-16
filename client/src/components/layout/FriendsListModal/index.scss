@@ -9,7 +9,13 @@
     text-align: center;
   }
 
-  div {
+  .openAddFriendsModalButton {
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .individualFriend {
     display: flex;
     justify-content: space-between;
     padding: 2rem 0;

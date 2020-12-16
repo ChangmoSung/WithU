@@ -1,19 +1,16 @@
 @import "../../../styles/variables";
 
-.addFriendModal {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border: 1px solid $primaryRed;
-  padding: 1.5rem;
-  font-size: 1.6rem;
+.formToSearchFriends {
+  display: flex;
+  flex-direction: column;
 
-  form {
-    display: flex;
-    flex-direction: column;
+  input {
+    margin: 2rem 0 3.5rem;
+  }
 
-    input {
-      margin: 2rem 0 3.5rem;
-    }
+  button {
+    width: 20%;
+    margin: 0 auto;
+    padding: 1.5rem 0;
   }
 }

@@ -30,10 +30,15 @@ const LightsReplyModal = ({
   };
 
   return (
-    <div className="lightsReplyModal">
-      <button onClick={() => toggleIsLightsReplyModalVisible(false)}>X</button>
+    <div className="modal">
+      <button
+        className="closeModalButton"
+        onClick={() => toggleIsLightsReplyModalVisible(false)}
+      >
+        X
+      </button>
       <span>To {receiverName}</span>
-      <form>
+      <form className="formToReplyLight">
         <label htmlFor="red" className="light redLight" />
         <input
           type="radio"
