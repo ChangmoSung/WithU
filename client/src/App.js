@@ -4,8 +4,8 @@ import "./components/styles/styles.scss";
 import Navbar from "./components/layout/Navbar/index.js";
 import LandingPage from "./components/layout/LandingPage/index.js";
 import SignUpPage from "./components/layout/SignUpPage/index.js";
-import FriendsListModal from "./components/layout/FriendsListModal/index.js";
-import LightsListModal from "./components/layout/LightsListModal/index.js";
+import FriendsList from "./components/layout/FriendsList/index.js";
+import LightsList from "./components/layout/LightsList/index.js";
 import Alert from "./components/layout/Alert/index.js";
 import PrivateRoute from "./components/routing/PrivateRoute/index.js";
 
@@ -27,16 +27,8 @@ const App = () => {
           <Alert />
           <Switch>
             <Route exact path="/signUpPage" component={SignUpPage} />
-            <PrivateRoute
-              exact
-              path="/lightsList"
-              component={LightsListModal}
-            />
-            <PrivateRoute
-              exact
-              path="/friendsList"
-              component={FriendsListModal}
-            />
+            <PrivateRoute exact path="/lightsList" component={LightsList} />
+            <PrivateRoute exact path="/friendsList" component={FriendsList} />
           </Switch>
         </div>
       </Router>

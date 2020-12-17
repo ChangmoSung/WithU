@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addFriend } from "../../../../actions/users";
 
-const AddFriendModal = ({ toggleIsAddFriendsModalVisible, addFriend }) => {
+const AddFriendModal = ({ toggleIsAddFriendModalVisible, addFriend }) => {
   const [friendEmail, setFriendEmail] = useState("");
 
   const onSubmit = (e) => {
@@ -17,7 +17,7 @@ const AddFriendModal = ({ toggleIsAddFriendsModalVisible, addFriend }) => {
       <h3>Add friends</h3>
       <button
         className="closeModalButton"
-        onClick={() => toggleIsAddFriendsModalVisible(false)}
+        onClick={() => toggleIsAddFriendModalVisible(false)}
       >
         X
       </button>
@@ -37,7 +37,7 @@ const AddFriendModal = ({ toggleIsAddFriendsModalVisible, addFriend }) => {
 
 AddFriendModal.propTypes = {
   addFriend: PropTypes.func.isRequired,
-  toggleIsAddFriendsModalVisible: PropTypes.bool.isRequired,
+  toggleIsAddFriendModalVisible: PropTypes.bool.isRequired,
 };
 
 export default connect(null, { addFriend })(AddFriendModal);

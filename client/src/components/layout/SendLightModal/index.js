@@ -5,9 +5,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addLight } from "../../../actions/users";
 
-const LightsReplyModal = ({
+const SendLightModal = ({
   addLight,
-  toggleIsLightsReplyModalVisible,
+  toggleIsSendLightModalVisible,
   receiverInfo: { personToReceiveLight, receiverName },
 }) => {
   const onChange = (e) => {
@@ -33,7 +33,7 @@ const LightsReplyModal = ({
     <div className="modal">
       <button
         className="closeModalButton"
-        onClick={() => toggleIsLightsReplyModalVisible(false)}
+        onClick={() => toggleIsSendLightModalVisible(false)}
       >
         X
       </button>
@@ -92,8 +92,8 @@ const LightsReplyModal = ({
   );
 };
 
-LightsReplyModal.propTypes = {
+SendLightModal.propTypes = {
   addLight: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addLight })(LightsReplyModal);
+export default connect(null, { addLight })(SendLightModal);

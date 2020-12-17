@@ -4,19 +4,19 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getFriendsList, deleteFriend } from "../../../actions/users";
-import LightsReplyModal from "../LightsReplyModal/index.js";
+import SendLightModal from "../SendLightModal/index.js";
 import AddFriendModal from "./AddFriendModal/index.js";
 
-const FriendsListModal = ({
+const FriendsList = ({
   getFriendsList,
   deleteFriend,
   friendsList,
   isAuthenticated,
 }) => {
-  const [isAddFriendsModalVisible, toggleIsAddFriendsModalVisible] = useState(
+  const [isAddFriendModalVisible, toggleIsAddFriendModalVisible] = useState(
     false
   );
-  const [isLightsReplyModalVisible, toggleIsLightsReplyModalVisible] = useState(
+  const [isSendLightModalVisible, toggleIsSendLightModalVisible] = useState(
     false
   );
   const [receiverInfo, setReceiverInfo] = useState({
@@ -32,11 +32,11 @@ const FriendsListModal = ({
 
   return (
     <Fragment>
-      <div className="friendsListModal">
+      <div className="friendsList">
         <h2>Friends List</h2>
         <button
           className="openAddFriendsModalButton"
-          onClick={() => toggleIsAddFriendsModalVisible(true)}
+          onClick={() => toggleIsAddFriendModalVisible(true)}
         >
           Add friends
         </button>
@@ -51,7 +51,7 @@ const FriendsListModal = ({
                       personToReceiveLight: email,
                       receiverName: `${firstName} ${lastName}`,
                     });
-                    toggleIsLightsReplyModalVisible(true);
+                    toggleIsSendLightModalVisible(true);
                   }}
                 >
                   Send light
@@ -59,16 +59,14 @@ const FriendsListModal = ({
                 <button onClick={() => deleteFriend(email)}>X</button>
               </div>
             ))}
-            {isAddFriendsModalVisible && (
+            {isAddFriendModalVisible && (
               <AddFriendModal
-                toggleIsAddFriendsModalVisible={toggleIsAddFriendsModalVisible}
+                toggleIsAddFriendModalVisible={toggleIsAddFriendModalVisible}
               />
             )}
-            {isLightsReplyModalVisible && (
-              <LightsReplyModal
-                toggleIsLightsReplyModalVisible={
-                  toggleIsLightsReplyModalVisible
-                }
+            {isSendLightModalVisible && (
+              <SendLightModal
+                toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
                 receiverInfo={receiverInfo}
               />
             )}
@@ -79,7 +77,7 @@ const FriendsListModal = ({
   );
 };
 
-FriendsListModal.propTypes = {
+FriendsList.propTypes = {
   getFriendsList: PropTypes.func.isRequired,
   deleteFriend: PropTypes.func.isRequired,
   friendsList: PropTypes.array,
@@ -94,4 +92,4 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getFriendsList,
   deleteFriend,
-})(FriendsListModal);
+})(FriendsList);

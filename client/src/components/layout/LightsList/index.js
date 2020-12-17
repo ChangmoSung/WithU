@@ -4,15 +4,10 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getLights, deleteLight } from "../../../actions/users";
-import LightsReplyModal from "../LightsReplyModal/index.js";
+import SendLightModal from "../SendLightModal/index.js";
 
-const LightsListModal = ({
-  isAuthenticated,
-  lights,
-  getLights,
-  deleteLight,
-}) => {
-  const [isLightsReplyModalVisible, toggleIsLightsReplyModalVisible] = useState(
+const LightsList = ({ isAuthenticated, lights, getLights, deleteLight }) => {
+  const [isSendLightModalVisible, toggleIsSendLightModalVisible] = useState(
     false
   );
   const [receiverInfo, setReceiverInfo] = useState({
@@ -27,7 +22,7 @@ const LightsListModal = ({
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div className="LightsListModal">
+    <div className="lightsList">
       <h2>My lights</h2>
       {lights && (
         <Fragment>
@@ -42,7 +37,7 @@ const LightsListModal = ({
                     personToReceiveLight: senderEmail,
                     receiverName: sender,
                   });
-                  toggleIsLightsReplyModalVisible(true);
+                  toggleIsSendLightModalVisible(true);
                 }}
               >
                 Reply
@@ -50,9 +45,9 @@ const LightsListModal = ({
               <button onClick={() => deleteLight(senderEmail)}>Delete</button>
             </div>
           ))}
-          {isLightsReplyModalVisible && (
-            <LightsReplyModal
-              toggleIsLightsReplyModalVisible={toggleIsLightsReplyModalVisible}
+          {isSendLightModalVisible && (
+            <SendLightModal
+              toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
               receiverInfo={receiverInfo}
             />
           )}
@@ -62,7 +57,7 @@ const LightsListModal = ({
   );
 };
 
-LightsListModal.propTypes = {
+LightsList.propTypes = {
   lights: PropTypes.array,
   isAuthenticated: PropTypes.bool,
   getLights: PropTypes.func.isRequired,
@@ -74,6 +69,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { getLights, deleteLight })(
-  LightsListModal
-);
+export default connect(mapStateToProps, { getLights, deleteLight })(LightsList);
