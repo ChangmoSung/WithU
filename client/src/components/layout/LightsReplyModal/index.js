@@ -37,7 +37,7 @@ const LightsReplyModal = ({
       >
         X
       </button>
-      <span>To {receiverName}</span>
+      <span style={{ color: "black" }}>To {receiverName}</span>
       <form className="formToReplyLight">
         <label htmlFor="red" className="light redLight" />
         <input

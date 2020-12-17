@@ -34,8 +34,8 @@ const LightsListModal = ({
           {lights.map(({ sender, senderEmail, light, message }, i) => (
             <div key={i} className="individualLight">
               <span className={`light ${light}Light`}></span>
-              <span>From {sender}</span>
-              <span>{message}</span>
+              <span className="fromWhom">{sender}</span>
+              <span className="messageContent">{message}</span>
               <button
                 onClick={() => {
                   setReceiverInfo({
