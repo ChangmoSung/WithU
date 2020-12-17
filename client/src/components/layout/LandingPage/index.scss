@@ -5,10 +5,10 @@
   flex-direction: column;
   align-items: center;
   font-size: 2rem;
-  border: 1px solid $primaryRed;
+  border: 1px solid $secondaryBlue;
   border-radius: $borderRadius;
   padding: 5rem 0;
-  color: $primaryBlue;
+  color: $secondaryBlue;
 
   form {
     display: flex;
@@ -25,6 +25,6 @@
   }
 
   a {
-    color: $primaryRed;
+    color: $secondaryBlue;
   }
 }
