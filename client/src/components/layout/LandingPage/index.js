@@ -44,7 +44,7 @@ const LandingPage = ({ signIn, isAuthenticated }) => {
             aria-label="Password"
             required
           />
-          <button>Log in</button>
+          <button>Sign in</button>
         </form>
         <p>
           Don't have an account? <Link to="/signUpPage">Sign Up</Link>

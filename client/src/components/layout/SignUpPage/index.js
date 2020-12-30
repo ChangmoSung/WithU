@@ -24,6 +24,8 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
 
     if (password === password2) {
       signUp({ firstName, lastName, email, password });
+    } else {
+      alert("Make sure passwords match");
     }
   };
 
