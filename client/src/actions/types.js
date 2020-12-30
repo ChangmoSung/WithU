@@ -1,5 +1,5 @@
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
+export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
+export const SIGNIN_FAIL = "SIGNIN_FAIL";
 export const USER_LOADED = "USER_LOADED";
 export const SIGN_OUT = "SIGN_OUT";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";

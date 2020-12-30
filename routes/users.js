@@ -9,7 +9,7 @@ const auth = require("../middleware/auth");
 const Users = require("../models/Users");
 
 // @route POST /users
-// @desc Register user
+// @desc Sign up user
 // @access Public
 router.post(
   "/",

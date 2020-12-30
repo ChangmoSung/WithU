@@ -1,13 +1,14 @@
 import axios from "axios";
 import {
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
+  SIGNIN_SUCCESS,
+  SIGNIN_FAIL,
   USER_LOADED,
   SIGN_OUT,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   AUTH_ERROR,
 } from "./types.js";
+import { setAlert } from "./alerts";
 import setAuthToken from "../utils/setAuthToken";
 
 export const loadUser = () => async (dispatch) => {
@@ -28,7 +29,7 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-export const login = (email, password) => async (dispatch) => {
+export const signIn = ({ email = "", password = "" }) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -40,22 +41,28 @@ export const login = (email, password) => async (dispatch) => {
   try {
     const res = await axios.post("/auth", body, config);
     dispatch({
-      type: LOGIN_SUCCESS,
+      type: SIGNIN_SUCCESS,
       payload: res.data,
     });
 
     dispatch(loadUser());
   } catch (err) {
     dispatch({
-      type: LOGIN_FAIL,
+      type: SIGNIN_FAIL,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
+    dispatch(
+      setAlert({
+        msg: "Please enter the correct email and password",
+        alertType: "danger",
+      })
+    );
   }
 };
 
 export const signOut = () => (dispatch) => dispatch({ type: SIGN_OUT });
 
-export const signUp = (user) => async (dispatch) => {
+export const signUp = (user = {}) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -71,12 +78,13 @@ export const signUp = (user) => async (dispatch) => {
       type: SIGNUP_SUCCESS,
       payload: res.data,
     });
-
     dispatch(loadUser());
+    dispatch(setAlert({ msg: "Signed up", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: SIGNUP_FAIL,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
+    dispatch(setAlert({ msg: "User already exists", alertType: "danger" }));
   }
 };

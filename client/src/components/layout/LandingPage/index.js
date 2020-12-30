@@ -3,9 +3,9 @@ import "./index.scss";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../../../actions/auth";
+import { signIn } from "../../../actions/auth";
 
-const LandingPage = ({ login, isAuthenticated }) => {
+const LandingPage = ({ signIn, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,7 +17,7 @@ const LandingPage = ({ login, isAuthenticated }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
+    signIn({ email, password });
   };
 
   if (isAuthenticated) return <Redirect to="/friendsList" />;
@@ -55,7 +55,7 @@ const LandingPage = ({ login, isAuthenticated }) => {
 };
 
 LandingPage.propTypes = {
-  login: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
 
@@ -63,4 +63,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(LandingPage);
+export default connect(mapStateToProps, { signIn })(LandingPage);

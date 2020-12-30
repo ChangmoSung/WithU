@@ -31,7 +31,7 @@ export const getFriendsList = () => async (dispatch) => {
   }
 };
 
-export const addFriend = (friendInfo) => async (dispatch) => {
+export const addFriend = (friendInfo = {}) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export const addFriend = (friendInfo) => async (dispatch) => {
       type: ADD_FRIEND,
       payload: res.data,
     });
-    dispatch(setAlert("Friend added", "success"));
+    dispatch(setAlert({ msg: "Friend added", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: ADD_FRIEND_ERROR,
@@ -55,7 +55,7 @@ export const addFriend = (friendInfo) => async (dispatch) => {
   }
 };
 
-export const deleteFriend = (email) => async (dispatch) => {
+export const deleteFriend = (email = "") => async (dispatch) => {
   try {
     const res = await axios.delete(`/users/deleteFriend/${email}`);
 
@@ -63,7 +63,7 @@ export const deleteFriend = (email) => async (dispatch) => {
       type: DELETE_FRIEND,
       payload: res.data,
     });
-    dispatch(setAlert("Friend deleted", "danger"));
+    dispatch(setAlert({ msg: "Friend deleted", alertType: "danger" }));
   } catch (err) {
     dispatch({
       type: DELETE_FRIEND_ERROR,
@@ -88,7 +88,7 @@ export const getLights = () => async (dispatch) => {
   }
 };
 
-export const addLight = (lightAndPerson) => async (dispatch) => {
+export const addLight = (lightAndPerson = {}) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export const addLight = (lightAndPerson) => async (dispatch) => {
       type: ADD_LIGHT,
       payload: res.data,
     });
-    dispatch(setAlert("Light Sent", "success"));
+    dispatch(setAlert({ msg: "Light Sent", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: ADD_LIGHT_ERROR,
@@ -112,7 +112,7 @@ export const addLight = (lightAndPerson) => async (dispatch) => {
   }
 };
 
-export const deleteLight = (emailOfPersonToDeleteLightFrom) => async (
+export const deleteLight = (emailOfPersonToDeleteLightFrom = "") => async (
   dispatch
 ) => {
   try {
@@ -124,7 +124,7 @@ export const deleteLight = (emailOfPersonToDeleteLightFrom) => async (
       type: DELETE_LIGHT,
       payload: res.data,
     });
-    dispatch(setAlert("Light Deleted", "danger"));
+    dispatch(setAlert({ msg: "Light Deleted", alertType: "danger" }));
   } catch (err) {
     dispatch({
       type: DELETE_LIGHT_ERROR,
