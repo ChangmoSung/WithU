@@ -208,11 +208,11 @@ router.get("/getLights", auth, async (req, res) => {
   }
 });
 
-// @route PUT /users/addLight
+// @route PUT /users/sendLight
 // @desc Add light
 // @access Private
 router.put(
-  "/addLight",
+  "/sendLight",
   [
     auth,
     check("light", "Select a light to send to the person :)").not().isEmpty(),

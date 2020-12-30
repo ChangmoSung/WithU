@@ -3,10 +3,10 @@ import "./index.scss";
 import moment from "moment";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addLight } from "../../../actions/users";
+import { sendLight } from "../../../actions/users";
 
 const SendLightModal = ({
-  addLight,
+  sendLight,
   toggleIsSendLightModalVisible,
   receiverInfo: { personToReceiveLight, receiverName },
 }) => {
@@ -20,7 +20,7 @@ const SendLightModal = ({
         orange: "I encourage you",
       };
 
-      addLight({
+      sendLight({
         personToReceiveLight,
         light,
         message: messages[light],
@@ -93,7 +93,7 @@ const SendLightModal = ({
 };
 
 SendLightModal.propTypes = {
-  addLight: PropTypes.func.isRequired,
+  sendLight: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addLight })(SendLightModal);
+export default connect(null, { sendLight })(SendLightModal);
