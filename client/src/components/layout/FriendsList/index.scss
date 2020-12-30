@@ -1,7 +1,6 @@
 @import "../../styles/variables";
 
 .friendsList {
-  width: 50%;
   border: 1px solid $secondaryBlue;
   padding: 1.5rem;
 
@@ -11,14 +10,14 @@
 
   .openAddFriendsModalButton {
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 1.5rem;
     padding: 1rem;
   }
 
   .individualFriend {
     display: flex;
     justify-content: space-between;
-    padding: 2rem 0;
+    padding: 3rem 0;
 
     span,
     button {

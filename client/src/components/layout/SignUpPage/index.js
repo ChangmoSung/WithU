@@ -35,7 +35,7 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
     <div className="container">
       <div className="wrapper signUpPage">
         <h1>With U</h1>
-        <p>Please sign up here :)</p>
+        <p>Please sign up here</p>
         <form onSubmit={onSubmit}>
           <input
             type="text"

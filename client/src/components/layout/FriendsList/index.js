@@ -32,46 +32,48 @@ const FriendsList = ({
 
   return (
     <Fragment>
-      <div className="friendsList">
-        <h2>Friends List</h2>
-        <button
-          className="openAddFriendsModalButton"
-          onClick={() => toggleIsAddFriendModalVisible(true)}
-        >
-          Add friends
-        </button>
-        {friendsList && (
-          <Fragment>
-            {friendsList.map(({ firstName, lastName, email }, i) => (
-              <div key={i} className="individualFriend">
-                <span>{firstName}</span>
-                <button
-                  onClick={() => {
-                    setReceiverInfo({
-                      personToReceiveLight: email,
-                      receiverName: `${firstName} ${lastName}`,
-                    });
-                    toggleIsSendLightModalVisible(true);
-                  }}
-                >
-                  Send light
-                </button>
-                <button onClick={() => deleteFriend(email)}>X</button>
-              </div>
-            ))}
-            {isAddFriendModalVisible && (
-              <AddFriendModal
-                toggleIsAddFriendModalVisible={toggleIsAddFriendModalVisible}
-              />
-            )}
-            {isSendLightModalVisible && (
-              <SendLightModal
-                toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
-                receiverInfo={receiverInfo}
-              />
-            )}
-          </Fragment>
-        )}
+      <div className="container">
+        <div className="wrapper friendsList">
+          <h2>Friends List</h2>
+          <button
+            className="openAddFriendsModalButton"
+            onClick={() => toggleIsAddFriendModalVisible(true)}
+          >
+            Add friends
+          </button>
+          {friendsList && (
+            <Fragment>
+              {friendsList.map(({ firstName, lastName, email }, i) => (
+                <div key={i} className="individualFriend">
+                  <span>{firstName}</span>
+                  <button
+                    onClick={() => {
+                      setReceiverInfo({
+                        personToReceiveLight: email,
+                        receiverName: `${firstName} ${lastName}`,
+                      });
+                      toggleIsSendLightModalVisible(true);
+                    }}
+                  >
+                    Send light
+                  </button>
+                  <button onClick={() => deleteFriend(email)}>X</button>
+                </div>
+              ))}
+              {isAddFriendModalVisible && (
+                <AddFriendModal
+                  toggleIsAddFriendModalVisible={toggleIsAddFriendModalVisible}
+                />
+              )}
+              {isSendLightModalVisible && (
+                <SendLightModal
+                  toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
+                  receiverInfo={receiverInfo}
+                />
+              )}
+            </Fragment>
+          )}
+        </div>
       </div>
     </Fragment>
   );

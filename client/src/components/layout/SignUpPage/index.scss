@@ -1,13 +1,22 @@
 @import "../../styles/variables";
+@import "../../styles/mediaQuery";
 
 .signUpPage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 2rem;
   border: 1px solid $secondaryBlue;
   border-radius: $borderRadius;
   color: $primaryBlue;
+
+  h1,
+  p {
+    color: $secondaryBlue;
+  }
+
+  h1 {
+    margin: 2rem 0 0;
+  }
 
   form {
     display: flex;
@@ -20,6 +29,14 @@
 
     button {
       padding: 1.5rem 0;
+    }
+
+    @include mq450 {
+      width: 70%;
+    }
+
+    @include mq375 {
+      width: 80%;
     }
   }
 

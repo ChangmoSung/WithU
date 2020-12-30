@@ -1,0 +1,35 @@
+@mixin mq1300 {
+  @media (max-width: 1300px) {
+    @content;
+  }
+}
+
+@mixin mq1000 {
+  @media (max-width: 1000px) {
+    @content;
+  }
+}
+
+@mixin mq768 {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mq640 {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin mq450 {
+  @media (max-width: 450px) {
+    @content;
+  }
+}
+
+@mixin mq375 {
+  @media (max-width: 375px) {
+    @content;
+  }
+}

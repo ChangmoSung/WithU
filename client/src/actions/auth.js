@@ -46,6 +46,7 @@ export const signIn = ({ email = "", password = "" }) => async (dispatch) => {
     });
 
     dispatch(loadUser());
+    dispatch(setAlert({ msg: "Signed in", alertType: "success" }));
   } catch (err) {
     dispatch({
       type: SIGNIN_FAIL,
@@ -60,7 +61,10 @@ export const signIn = ({ email = "", password = "" }) => async (dispatch) => {
   }
 };
 
-export const signOut = () => (dispatch) => dispatch({ type: SIGN_OUT });
+export const signOut = () => (dispatch) => {
+  dispatch({ type: SIGN_OUT });
+  dispatch(setAlert({ msg: "Signed out", alertType: "success" }));
+};
 
 export const signUp = (user = {}) => async (dispatch) => {
   const config = {

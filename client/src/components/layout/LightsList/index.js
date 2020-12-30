@@ -22,37 +22,39 @@ const LightsList = ({ isAuthenticated, lights, getLights, deleteLight }) => {
   if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div className="lightsList">
-      <h2>My lights</h2>
-      {lights && (
-        <Fragment>
-          {lights.map(({ sender, senderEmail, light, message }, i) => (
-            <div key={i} className="individualLight">
-              <span className={`light ${light}Light`}></span>
-              <span className="fromWhom">{sender}</span>
-              <span className="messageContent">{message}</span>
-              <button
-                onClick={() => {
-                  setReceiverInfo({
-                    personToReceiveLight: senderEmail,
-                    receiverName: sender,
-                  });
-                  toggleIsSendLightModalVisible(true);
-                }}
-              >
-                Reply
-              </button>
-              <button onClick={() => deleteLight(senderEmail)}>Delete</button>
-            </div>
-          ))}
-          {isSendLightModalVisible && (
-            <SendLightModal
-              toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
-              receiverInfo={receiverInfo}
-            />
-          )}
-        </Fragment>
-      )}
+    <div className="container">
+      <div className="wrapper lightsList">
+        <h2>My lights</h2>
+        {lights && (
+          <Fragment>
+            {lights.map(({ sender, senderEmail, light, message }, i) => (
+              <div key={i} className="individualLight">
+                <span className={`light ${light}Light`}></span>
+                <span className="fromWhom">{sender}</span>
+                <span className="messageContent">{message}</span>
+                <button
+                  onClick={() => {
+                    setReceiverInfo({
+                      personToReceiveLight: senderEmail,
+                      receiverName: sender,
+                    });
+                    toggleIsSendLightModalVisible(true);
+                  }}
+                >
+                  Reply
+                </button>
+                <button onClick={() => deleteLight(senderEmail)}>Delete</button>
+              </div>
+            ))}
+            {isSendLightModalVisible && (
+              <SendLightModal
+                toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
+                receiverInfo={receiverInfo}
+              />
+            )}
+          </Fragment>
+        )}
+      </div>
     </div>
   );
 };

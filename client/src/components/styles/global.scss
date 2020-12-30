@@ -1,4 +1,5 @@
 @import "variables";
+@import "mediaQuery";
 
 html {
   font-size: 62.5%;
@@ -10,10 +11,18 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  font-size: 2rem;
   width: 100%;
   background-color: $primaryBlue;
   color: #ffffff;
+
+  @include mq640 {
+    font-size: 1.8rem;
+  }
+
+  @include mq450 {
+    font-size: 1.6rem;
+  }
 }
 
 img {
@@ -22,8 +31,20 @@ img {
 }
 
 .wrapper {
-  width: 40%;
+  width: 45%;
   margin: 0 auto;
+
+  @include mq1300 {
+    width: 60%;
+  }
+
+  @include mq1000 {
+    width: 70%;
+  }
+
+  @include mq768 {
+    width: 80%;
+  }
 }
 
 input {
@@ -88,5 +109,10 @@ button {
     top: 1.5rem;
     right: 1.5rem;
     padding: 1.5rem;
+  }
+
+  @include mq1000 {
+    width: 80%;
+    left: 10%;
   }
 }
