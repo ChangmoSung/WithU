@@ -47,7 +47,7 @@ const LandingPage = ({ signIn, isAuthenticated }) => {
           <button>Sign in</button>
         </form>
         <p>
-          Don't have an account? <Link to="/signUpPage">Sign Up</Link>
+          Don't have an account? <Link to="/signUpPage">Sign up</Link>
         </p>
       </div>
     </div>

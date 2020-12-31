@@ -9,6 +9,10 @@
   width: 85%;
   height: 85%;
 
+  label {
+    cursor: pointer;
+  }
+
   input {
     display: none;
   }
