@@ -9,7 +9,7 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) =>
   isAuthenticated &&
   !loading && (
     <nav>
-      <ul>
+      <ul className="wrapper">
         <li>
           <Link to="friendsList">Friends</Link>
         </li>

@@ -1,21 +1,21 @@
 @import "../../styles/variables";
+@import "../../styles/mediaQuery";
 
 nav {
   position: absolute;
   top: 10%;
   width: 100%;
-  font-size: 1.6rem;
+  font-size: 2rem;
 
   ul {
     display: flex;
     justify-content: space-evenly;
-    width: 50%;
     list-style: none;
     margin: 0 auto;
     padding: 0;
 
     li {
-      padding: 1.5rem 2rem;
+      padding: 1rem 2.5rem;
       background: $secondaryBlue;
       border-radius: $borderRadius;
 
@@ -24,5 +24,13 @@ nav {
         text-decoration: none;
       }
     }
+  }
+
+  @include mq640 {
+    font-size: 1.8rem;
+  }
+
+  @include mq450 {
+    font-size: 1.6rem;
   }
 }
