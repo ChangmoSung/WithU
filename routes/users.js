@@ -253,14 +253,14 @@ router.put(
         return;
       }
 
-      const userAlreadyHasLightFromTheSameUser = receiver.lights.some(
+      const userAlreadyHasLightFromTheSameUser = receiver.lights.filter(
         ({ senderEmail }) => senderEmail === sender.email
       );
-      if (userAlreadyHasLightFromTheSameUser) {
+      if (userAlreadyHasLightFromTheSameUser.length >= 3) {
         res.status(400).json({
           errors: [
             {
-              msg: "You can only send a light to the same person once a day :)",
+              msg: "You can only send 3 lights at most to the same person",
             },
           ],
         });

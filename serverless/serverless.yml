@@ -15,7 +15,7 @@ functions:
   updateLights:
     handler: index.updateLights
     events:
-      - schedule: rate(60 minutes)
+      - schedule: rate(5 minutes)
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
