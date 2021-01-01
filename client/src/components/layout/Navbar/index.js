@@ -21,10 +21,14 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
         <nav>
           <ul className="wrapper">
             <li>
-              <Link to="friendsList">Friends</Link>
+              <Link to="friendsList" onClick={() => toggleNav(!isNavVisible)}>
+                Friends
+              </Link>
             </li>
             <li>
-              <Link to="lightsList">Lights</Link>
+              <Link to="lightsList" onClick={() => toggleNav(!isNavVisible)}>
+                Lights
+              </Link>
             </li>
             <li>
               <button onClick={() => signOut()}>Sign out</button>
@@ -32,9 +36,9 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
           </ul>
         </nav>
       )}
-      {isNavOpenerVisible && (
+      {isAuthenticated && !loading && isNavOpenerVisible && (
         <button className="navOpener" onClick={() => toggleNav(!isNavVisible)}>
-          open
+          Open
         </button>
       )}
     </Fragment>
