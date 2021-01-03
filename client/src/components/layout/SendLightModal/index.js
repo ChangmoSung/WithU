@@ -18,6 +18,8 @@ const SendLightModal = ({
         blue: "I believe in you",
         green: "Please stay healthy and safe",
         orange: "I encourage you",
+        purple: "You are luxurious",
+        brown: "Be confident",
       };
 
       sendLight({

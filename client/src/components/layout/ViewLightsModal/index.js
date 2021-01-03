@@ -19,40 +19,41 @@ const ViewLightsModal = ({
 
   return (
     <Fragment>
-      <div className="modal viewLightsModal">
-        <button
-          className="closeModalButton"
-          onClick={() => toggleIsViewLightsModalVisible(false)}
-        >
-          X
-        </button>
-        <ul>
-          {lightsInfo &&
-            lightsInfo.map(({ light, message }, i) => (
-              <li key={i}>
-                <span className={`light ${light}Light`}></span>
-                <span>{message}</span>
-              </li>
-            ))}
-        </ul>
-        <button
-          className="replyButton"
-          onClick={() => {
-            setReceiverInfo({
-              personToReceiveLight: senderEmail,
-              receiverName: sender,
-            });
-            toggleIsSendLightModalVisible(true);
-          }}
-        >
-          Reply to {sender}
-        </button>
-      </div>
-      {isSendLightModalVisible && (
+      {isSendLightModalVisible ? (
         <SendLightModal
           toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
           receiverInfo={receiverInfo}
         />
+      ) : (
+        <div className="modal viewLightsModal">
+          <button
+            className="closeModalButton"
+            onClick={() => toggleIsViewLightsModalVisible(false)}
+          >
+            X
+          </button>
+          <ul>
+            {lightsInfo &&
+              lightsInfo.map(({ light, message }, i) => (
+                <li key={i}>
+                  <span className={`light ${light}Light`}></span>
+                  <span>{message}</span>
+                </li>
+              ))}
+          </ul>
+          <button
+            className="replyButton"
+            onClick={() => {
+              setReceiverInfo({
+                personToReceiveLight: senderEmail,
+                receiverName: sender,
+              });
+              toggleIsSendLightModalVisible(true);
+            }}
+          >
+            Reply to {sender}
+          </button>
+        </div>
       )}
     </Fragment>
   );
