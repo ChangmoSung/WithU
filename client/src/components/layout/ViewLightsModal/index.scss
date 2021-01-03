@@ -1,0 +1,19 @@
+.viewLightsModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  ul {
+    list-style: none;
+    color: black;
+
+    li {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .replyButton {
+    padding: 1.5rem;
+  }
+}

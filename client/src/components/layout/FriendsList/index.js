@@ -83,7 +83,7 @@ FriendsList.propTypes = {
   getFriendsList: PropTypes.func.isRequired,
   deleteFriend: PropTypes.func.isRequired,
   friendsList: PropTypes.array,
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

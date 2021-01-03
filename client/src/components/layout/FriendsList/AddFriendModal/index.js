@@ -37,7 +37,7 @@ const AddFriendModal = ({ toggleIsAddFriendModalVisible, addFriend }) => {
 
 AddFriendModal.propTypes = {
   addFriend: PropTypes.func.isRequired,
-  toggleIsAddFriendModalVisible: PropTypes.bool.isRequired,
+  toggleIsAddFriendModalVisible: PropTypes.func.isRequired,
 };
 
 export default connect(null, { addFriend })(AddFriendModal);

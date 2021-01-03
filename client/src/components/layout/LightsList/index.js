@@ -4,20 +4,17 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getLights, deleteLight } from "../../../actions/users";
-import SendLightModal from "../SendLightModal/index.js";
+import ViewLightsModal from "../ViewLightsModal/index.js";
 
 const LightsList = ({ isAuthenticated, lights, getLights, deleteLight }) => {
-  const [isSendLightModalVisible, toggleIsSendLightModalVisible] = useState(
-    false
-  );
-  const [receiverInfo, setReceiverInfo] = useState({
-    personToReceiveLight: "",
-    receiverName: "",
-  });
-
   useEffect(() => {
     getLights();
   }, [getLights]);
+
+  const [isViewLightsModalVisible, toggleIsViewLightsModalVisible] = useState(
+    false
+  );
+  const [lightsInfo, setLightsInfo] = useState({});
 
   if (!isAuthenticated) return <Redirect to="/" />;
 
@@ -25,35 +22,35 @@ const LightsList = ({ isAuthenticated, lights, getLights, deleteLight }) => {
     <div className="container">
       <div className="wrapper lightsList">
         <h2>My lights</h2>
-        {lights && (
-          <Fragment>
-            {lights.map(({ sender, senderEmail, light, message }, i) => (
-              <div key={i} className="individualLight">
-                <span className={`light ${light}Light`}></span>
-                <span className="fromWhom">{sender}</span>
-                <span className="messageContent">{message}</span>
+        {lights &&
+          lights.map(({ sender, senderEmail, lightsFromThisSender }, i) => (
+            <Fragment key={i}>
+              <div className="individualLight">
+                <span className="fromWhom">
+                  You have {lightsFromThisSender.length} lights from {sender}
+                </span>
                 <button
                   onClick={() => {
-                    setReceiverInfo({
-                      personToReceiveLight: senderEmail,
-                      receiverName: sender,
-                    });
-                    toggleIsSendLightModalVisible(true);
+                    toggleIsViewLightsModalVisible(true);
+                    setLightsInfo(lightsFromThisSender);
                   }}
                 >
-                  Reply
+                  View
                 </button>
                 <button onClick={() => deleteLight(senderEmail)}>Delete</button>
               </div>
-            ))}
-            {isSendLightModalVisible && (
-              <SendLightModal
-                toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
-                receiverInfo={receiverInfo}
-              />
-            )}
-          </Fragment>
-        )}
+              {isViewLightsModalVisible && (
+                <ViewLightsModal
+                  toggleIsViewLightsModalVisible={
+                    toggleIsViewLightsModalVisible
+                  }
+                  sender={sender}
+                  senderEmail={senderEmail}
+                  lightsInfo={lightsInfo}
+                />
+              )}
+            </Fragment>
+          ))}
       </div>
     </div>
   );

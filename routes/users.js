@@ -209,7 +209,7 @@ router.get("/getLights", auth, async (req, res) => {
 });
 
 // @route PUT /users/sendLight
-// @desc Add light
+// @desc Send light
 // @access Private
 router.put(
   "/sendLight",
@@ -253,10 +253,14 @@ router.put(
         return;
       }
 
-      const userAlreadyHasLightFromTheSameUser = receiver.lights.filter(
+      let receiverAlreadyHasLightFromThisUser = receiver.lights.find(
         ({ senderEmail }) => senderEmail === sender.email
       );
-      if (userAlreadyHasLightFromTheSameUser.length >= 3) {
+
+      if (
+        receiverAlreadyHasLightFromThisUser &&
+        receiverAlreadyHasLightFromThisUser.lightsFromThisSender.length >= 3
+      ) {
         res.status(400).json({
           errors: [
             {
@@ -267,13 +271,25 @@ router.put(
         return;
       }
 
-      receiver.lights.unshift({
-        sender: `${sender.firstName} ${sender.lastName}`,
-        senderEmail: sender.email,
-        light,
-        message,
-        removeLightAt,
-      });
+      if (receiverAlreadyHasLightFromThisUser) {
+        receiverAlreadyHasLightFromThisUser.lightsFromThisSender.unshift({
+          light,
+          message,
+          removeLightAt,
+        });
+      } else {
+        receiver.lights.unshift({
+          sender: `${sender.firstName} ${sender.lastName}`,
+          senderEmail: sender.email,
+          lightsFromThisSender: [
+            {
+              light,
+              message,
+              removeLightAt,
+            },
+          ],
+        });
+      }
 
       await receiver.save();
       res.send(receiver.lights);
