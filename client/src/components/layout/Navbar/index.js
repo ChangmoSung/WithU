@@ -22,6 +22,14 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
           <ul className="wrapper">
             <li>
               <Link
+                to="guide"
+                onClick={() => isNavOpenerVisible && toggleNav(!isNavVisible)}
+              >
+                Guide
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="friendsList"
                 onClick={() => isNavOpenerVisible && toggleNav(!isNavVisible)}
               >

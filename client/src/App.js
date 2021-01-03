@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./components/styles/styles.scss";
 import Navbar from "./components/layout/Navbar/index.js";
+import GuideModal from "./components/layout/GuideModal/index.js";
 import LandingPage from "./components/layout/LandingPage/index.js";
 import SignUpPage from "./components/layout/SignUpPage/index.js";
 import FriendsList from "./components/layout/FriendsList/index.js";
@@ -27,6 +28,7 @@ const App = () => {
           <Alert />
           <Switch>
             <Route exact path="/signUpPage" component={SignUpPage} />
+            <PrivateRoute exact path="/guide" component={GuideModal} />
             <PrivateRoute exact path="/lightsList" component={LightsList} />
             <PrivateRoute exact path="/friendsList" component={FriendsList} />
           </Switch>

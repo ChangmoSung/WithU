@@ -1,0 +1,7 @@
+@import "../../../styles/mediaQuery";
+
+.meaningOfLightsTitle {
+  @include mq450 {
+    margin-top: 5rem;
+  }
+}
