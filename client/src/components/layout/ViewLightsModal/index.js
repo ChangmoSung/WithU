@@ -1,13 +1,17 @@
 import React, { Fragment, useState } from "react";
 import "./index.scss";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import SendLightModal from "../SendLightModal/index.js";
+import { deleteLight } from "../../../actions/users";
 
 const ViewLightsModal = ({
   toggleIsViewLightsModalVisible,
   sender,
   senderEmail,
   lightsInfo,
+  setLightsInfo,
+  deleteLight,
 }) => {
   const [receiverInfo, setReceiverInfo] = useState({
     personToReceiveLight: "",
@@ -34,10 +38,26 @@ const ViewLightsModal = ({
           </button>
           <ul>
             {lightsInfo &&
-              lightsInfo.map(({ light, message }, i) => (
+              lightsInfo.map(({ _id, light, message }, i) => (
                 <li key={i}>
                   <span className={`light ${light}Light`}></span>
                   <span>{message}</span>
+                  <button
+                    onClick={() => {
+                      if (
+                        window.confirm("Would you like to delete this light?")
+                      ) {
+                        setLightsInfo(
+                          lightsInfo.filter(
+                            ({ _id: lightId }) => lightId !== _id
+                          )
+                        );
+                        deleteLight(_id);
+                      }
+                    }}
+                  >
+                    x
+                  </button>
                 </li>
               ))}
           </ul>
@@ -64,6 +84,8 @@ ViewLightsModal.propTypes = {
   sender: PropTypes.string.isRequired,
   senderEmail: PropTypes.string.isRequired,
   lightsInfo: PropTypes.array.isRequired,
+  setLightsInfo: PropTypes.func.isRequired,
+  deleteLight: PropTypes.func.isRequired,
 };
 
-export default ViewLightsModal;
+export default connect(null, { deleteLight })(ViewLightsModal);

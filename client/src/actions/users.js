@@ -11,6 +11,8 @@ import {
   ADD_LIGHT_ERROR,
   LIGHTS_LOADED,
   LIGHTS_LOADED_ERROR,
+  DELETE_LIGHTS,
+  DELETE_LIGHTS_ERROR,
   DELETE_LIGHT,
   DELETE_LIGHT_ERROR,
 } from "./types.js";
@@ -122,6 +124,24 @@ export const deleteLights = (emailOfPersonToDeleteLightsFrom = "") => async (
     const res = await axios.delete(
       `/users/deleteLights/${emailOfPersonToDeleteLightsFrom}`
     );
+
+    dispatch({
+      type: DELETE_LIGHTS,
+      payload: res.data,
+    });
+    dispatch(setAlert({ msg: "Lights deleted", alertType: "success" }));
+  } catch (err) {
+    dispatch({
+      type: DELETE_LIGHTS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+    dispatch(setAlert({ msg: "Lights not deleted", alertType: "danger" }));
+  }
+};
+
+export const deleteLight = (lightId = "") => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/users/deleteLight/${lightId}`);
 
     dispatch({
       type: DELETE_LIGHT,

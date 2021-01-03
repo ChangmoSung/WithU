@@ -57,6 +57,7 @@ const LightsList = ({ isAuthenticated, lights, getLights, deleteLights }) => {
                   sender={sender}
                   senderEmail={senderEmail}
                   lightsInfo={lightsInfo}
+                  setLightsInfo={setLightsInfo}
                 />
               )}
             </Fragment>

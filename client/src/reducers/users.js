@@ -9,6 +9,8 @@ import {
   ADD_LIGHT_ERROR,
   LIGHTS_LOADED,
   LIGHTS_LOADED_ERROR,
+  DELETE_LIGHTS,
+  DELETE_LIGHTS_ERROR,
   DELETE_LIGHT,
   DELETE_LIGHT_ERROR,
 } from "../actions/types";
@@ -25,6 +27,7 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case LIGHTS_LOADED:
+    case DELETE_LIGHTS:
     case DELETE_LIGHT:
       return {
         ...state,
@@ -44,6 +47,7 @@ export default function (state = initialState, action) {
     case DELETE_FRIEND_ERROR:
     case ADD_LIGHT_ERROR:
     case LIGHTS_LOADED_ERROR:
+    case DELETE_LIGHTS_ERROR:
     case DELETE_LIGHT_ERROR:
       return {
         ...state,

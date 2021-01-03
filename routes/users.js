@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -328,5 +329,36 @@ router.delete(
     }
   }
 );
+
+// @route DELETE /users/deleteLight/:lightId
+// @desc Delete light
+// @access Private
+router.delete("/deleteLight/:lightId", auth, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const user = await Users.findOneAndUpdate(
+      {
+        "lights.lightsFromThisSender._id": req.params.lightId,
+      },
+      {
+        $pull: {
+          "lights.$.lightsFromThisSender": {
+            _id: { $eq: mongoose.Types.ObjectId(req.params.lightId) },
+          },
+        },
+      },
+      { new: true }
+    );
+
+    res.send(user.lights);
+  } catch ({ message }) {
+    console.error(message);
+    res.status(500).send("Server error");
+  }
+});
 
 module.exports = router;
