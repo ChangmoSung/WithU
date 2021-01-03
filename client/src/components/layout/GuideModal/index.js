@@ -23,7 +23,12 @@ const GuideModal = ({ isAuthenticated }) => {
           <li>You can send lights from either friends list or lights list</li>
           <li>
             See the meaning of each light{" "}
-            <button onClick={() => showMeaningOfLights(true)}>here</button>
+            <button
+              style={{ padding: "0.5rem" }}
+              onClick={() => showMeaningOfLights(true)}
+            >
+              here
+            </button>
           </li>
         </ul>
       </div>

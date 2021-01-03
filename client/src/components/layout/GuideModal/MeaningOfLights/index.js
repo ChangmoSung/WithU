@@ -11,12 +11,25 @@ const MeaningOfLights = ({ isAuthenticated, showMeaningOfLights }) => {
     <div className="modal guideModal">
       <h2 className="meaningOfLightsTitle">Meaning Of Lights</h2>
       <ul>
-        <li>Red is "I love you"</li>
-        <li>Blue is "I believe in you"</li>
-        <li>Green is "Please stay healthy and safe"</li>
-        <li>Orange is "I encourage you"</li>
-        <li>Purple is "You are luxurious"</li>
-        <li>Brown is "Be confident"</li>
+        <li>
+          <span className="light redLight"></span> means "I love you"
+        </li>
+        <li>
+          <span className="light blueLight"></span> means "I believe in you"
+        </li>
+        <li>
+          <span className="light greenLight"></span> means "Please stay healthy
+          and safe"
+        </li>
+        <li>
+          <span className="light orangeLight"></span> means "I encourage you"
+        </li>
+        <li>
+          <span className="light purpleLight"></span> means "You are luxurious"
+        </li>
+        <li>
+          <span className="light brownLight"></span> means "Be confident"
+        </li>
       </ul>
       <button
         className="closeModalButton"
