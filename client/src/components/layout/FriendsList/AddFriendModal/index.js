@@ -9,12 +9,14 @@ const AddFriendModal = ({ toggleIsAddFriendModalVisible, addFriend }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addFriend({ email: friendEmail, sinceWhen: new Date() });
+    if (window.confirm("Would you like to add this use as a friend?")) {
+      addFriend({ email: friendEmail, sinceWhen: new Date() });
+    }
   };
 
   return (
     <div className="modal">
-      <h3>Add friends</h3>
+      <h2>Add friends</h2>
       <button
         className="closeModalButton"
         onClick={() => toggleIsAddFriendModalVisible(false)}

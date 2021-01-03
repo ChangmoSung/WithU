@@ -103,6 +103,7 @@ button {
   border: 1px solid $secondaryBlue;
   border-radius: $borderRadius;
   padding: 1.5rem;
+  overflow: auto;
 
   .closeModalButton {
     position: absolute;
