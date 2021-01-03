@@ -53,17 +53,21 @@ module.exports = Users = mongoose.model(
           type: String,
           required: true,
         },
-        light: {
-          type: String,
-          required: true,
-        },
-        message: {
-          type: String,
-        },
-        removeLightAt: {
-          type: Date,
-          required: true,
-        },
+        lightsFromThisSender: [
+          {
+            light: {
+              type: String,
+              required: true,
+            },
+            message: {
+              type: String,
+            },
+            removeLightAt: {
+              type: Date,
+              required: true,
+            },
+          },
+        ],
       },
     ],
     date: {

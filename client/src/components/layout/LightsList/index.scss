@@ -14,6 +14,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 2rem 0;
+    border-bottom: 2px solid $secondaryBlue;
 
     .fromWhom {
       line-height: 2.5rem;
@@ -37,10 +38,6 @@
       @include mq450 {
         margin: 0.75rem 0;
       }
-    }
-
-    @include mq450 {
-      border-bottom: 2px solid $secondaryBlue;
     }
   }
 }

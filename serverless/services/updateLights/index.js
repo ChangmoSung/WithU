@@ -16,14 +16,21 @@ const updateLights = async () => {
       useFindAndModify: false,
     });
 
-    const users = await Users.updateMany(
+    const updates = await Users.updateMany(
       {
-        "lights.removeLightAt": { $lt: new Date() },
+        "lights.lightsFromThisSender.removeLightAt": { $lt: new Date() },
       },
-      { $pull: { lights: { removeLightAt: { $lt: new Date() } } } }
+      {
+        $pull: {
+          "lights.$.lightsFromThisSender": {
+            removeLightAt: { $lt: new Date() },
+          },
+        },
+      }
     );
 
-    console.log(util.inspect(users, false, null, true /* enable colors */));
+    console.log(util.inspect(updates, false, null, true /* enable colors */));
+
     return true;
   } catch (error) {
     console.error(error);

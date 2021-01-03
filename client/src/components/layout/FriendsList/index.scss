@@ -19,16 +19,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 3rem 0;
+    padding: 2rem 0;
+    border-bottom: 2px solid $secondaryBlue;
 
-    span,
-    button {
-      width: calc(100% / 3 - 10%);
-      padding: 1rem 0;
+    span {
+      line-height: 2.5rem;
+    }
+
+    .buttonsContainer {
+      @include mq640 {
+        display: flex;
+      }
+
+      @include mq450 {
+        flex-direction: column;
+        margin-left: 2rem;
+      }
     }
 
     button {
       padding: 1rem;
+      margin: 0 0 0 2rem;
+
+      @include mq450 {
+        margin: 0.75rem 0;
+      }
     }
   }
 }

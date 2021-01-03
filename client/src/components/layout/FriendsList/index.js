@@ -46,18 +46,20 @@ const FriendsList = ({
               {friendsList.map(({ firstName, lastName, email }, i) => (
                 <div key={i} className="individualFriend">
                   <span>{firstName}</span>
-                  <button
-                    onClick={() => {
-                      setReceiverInfo({
-                        personToReceiveLight: email,
-                        receiverName: `${firstName} ${lastName}`,
-                      });
-                      toggleIsSendLightModalVisible(true);
-                    }}
-                  >
-                    Send light
-                  </button>
-                  <button onClick={() => deleteFriend(email)}>X</button>
+                  <div className="buttonsContainer">
+                    <button
+                      onClick={() => {
+                        setReceiverInfo({
+                          personToReceiveLight: email,
+                          receiverName: `${firstName} ${lastName}`,
+                        });
+                        toggleIsSendLightModalVisible(true);
+                      }}
+                    >
+                      Send light
+                    </button>
+                    <button onClick={() => deleteFriend(email)}>X</button>
+                  </div>
                 </div>
               ))}
               {isAddFriendModalVisible && (

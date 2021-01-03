@@ -38,7 +38,13 @@ const LightsList = ({ isAuthenticated, lights, getLights, deleteLights }) => {
                   >
                     View
                   </button>
-                  <button onClick={() => deleteLights(senderEmail)}>
+                  <button
+                    onClick={() =>
+                      window.confirm(
+                        "Would you like to delete all lights from this user?"
+                      ) && deleteLights(senderEmail)
+                    }
+                  >
                     Delete
                   </button>
                 </div>
