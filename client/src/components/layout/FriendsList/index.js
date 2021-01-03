@@ -58,7 +58,15 @@ const FriendsList = ({
                     >
                       Send light
                     </button>
-                    <button onClick={() => deleteFriend(email)}>X</button>
+                    <button
+                      onClick={() =>
+                        window.confirm(
+                          "Would you like to unfriend this user?"
+                        ) && deleteFriend(email)
+                      }
+                    >
+                      X
+                    </button>
                   </div>
                 </div>
               ))}

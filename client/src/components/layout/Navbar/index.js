@@ -37,7 +37,13 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
               </Link>
             </li>
             <li>
-              <button onClick={() => signOut()}>Sign out</button>
+              <button
+                onClick={() =>
+                  window.confirm("Would you like to sign out?") && signOut()
+                }
+              >
+                Sign out
+              </button>
             </li>
           </ul>
         </nav>
