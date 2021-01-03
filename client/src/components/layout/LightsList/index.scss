@@ -1,4 +1,5 @@
 @import "../../styles/variables";
+@import "../../styles/mediaQuery";
 
 .lightsList {
   border: 1px solid $secondaryBlue;
@@ -14,19 +15,32 @@
     align-items: center;
     padding: 2rem 0;
 
+    .fromWhom {
+      line-height: 2.5rem;
+    }
+
+    .buttonsContainer {
+      @include mq640 {
+        display: flex;
+      }
+
+      @include mq450 {
+        flex-direction: column;
+        margin-left: 2rem;
+      }
+    }
+
     button {
       padding: 1rem;
-      margin: 0 0.5rem;
+      margin: 0 0 0 2rem;
+
+      @include mq450 {
+        margin: 0.75rem 0;
+      }
     }
 
-    .fromWhom {
-      width: 20%;
-      margin: 0 0.5rem;
-    }
-
-    .messageContent {
-      width: 45%;
-      margin: 0 2rem;
+    @include mq450 {
+      border-bottom: 2px solid $secondaryBlue;
     }
   }
 }

@@ -3,10 +3,10 @@ import "./index.scss";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import { getLights, deleteLight } from "../../../actions/users";
+import { getLights, deleteLights } from "../../../actions/users";
 import ViewLightsModal from "../ViewLightsModal/index.js";
 
-const LightsList = ({ isAuthenticated, lights, getLights, deleteLight }) => {
+const LightsList = ({ isAuthenticated, lights, getLights, deleteLights }) => {
   useEffect(() => {
     getLights();
   }, [getLights]);
@@ -27,17 +27,21 @@ const LightsList = ({ isAuthenticated, lights, getLights, deleteLight }) => {
             <Fragment key={i}>
               <div className="individualLight">
                 <span className="fromWhom">
-                  You have {lightsFromThisSender.length} lights from {sender}
+                  {lightsFromThisSender.length} lights from {sender}
                 </span>
-                <button
-                  onClick={() => {
-                    toggleIsViewLightsModalVisible(true);
-                    setLightsInfo(lightsFromThisSender);
-                  }}
-                >
-                  View
-                </button>
-                <button onClick={() => deleteLight(senderEmail)}>Delete</button>
+                <div className="buttonsContainer">
+                  <button
+                    onClick={() => {
+                      toggleIsViewLightsModalVisible(true);
+                      setLightsInfo(lightsFromThisSender);
+                    }}
+                  >
+                    View
+                  </button>
+                  <button onClick={() => deleteLights(senderEmail)}>
+                    Delete
+                  </button>
+                </div>
               </div>
               {isViewLightsModalVisible && (
                 <ViewLightsModal
@@ -60,7 +64,7 @@ LightsList.propTypes = {
   lights: PropTypes.array,
   isAuthenticated: PropTypes.bool,
   getLights: PropTypes.func.isRequired,
-  deleteLight: PropTypes.func.isRequired,
+  deleteLights: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -68,4 +72,6 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { getLights, deleteLight })(LightsList);
+export default connect(mapStateToProps, { getLights, deleteLights })(
+  LightsList
+);

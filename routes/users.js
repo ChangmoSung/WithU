@@ -300,11 +300,11 @@ router.put(
   }
 );
 
-// @route DELETE /users/deleteLight/:emailOfPersonToDeleteLightFrom
-// @desc Delete light
+// @route DELETE /users/deleteLights/:emailOfPersonToDeleteLightsFrom
+// @desc Delete lights
 // @access Private
 router.delete(
-  "/deleteLight/:emailOfPersonToDeleteLightFrom",
+  "/deleteLights/:emailOfPersonToDeleteLightsFrom",
   auth,
   async (req, res) => {
     const errors = validationResult(req);
@@ -317,7 +317,7 @@ router.delete(
 
       const removeIndex = user.lights
         .map(({ senderEmail }) => senderEmail)
-        .indexOf(req.params.emailOfPersonToDeleteLightFrom);
+        .indexOf(req.params.emailOfPersonToDeleteLightsFrom);
       user.lights.splice(removeIndex, 1);
 
       await user.save();

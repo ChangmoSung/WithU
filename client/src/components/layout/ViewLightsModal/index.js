@@ -45,7 +45,7 @@ const ViewLightsModal = ({
             toggleIsSendLightModalVisible(true);
           }}
         >
-          Reply
+          Reply to {sender}
         </button>
       </div>
       {isSendLightModalVisible && (

@@ -115,12 +115,12 @@ export const sendLight = (lightAndPerson = {}) => async (dispatch) => {
   }
 };
 
-export const deleteLight = (emailOfPersonToDeleteLightFrom = "") => async (
+export const deleteLights = (emailOfPersonToDeleteLightsFrom = "") => async (
   dispatch
 ) => {
   try {
     const res = await axios.delete(
-      `/users/deleteLight/${emailOfPersonToDeleteLightFrom}`
+      `/users/deleteLights/${emailOfPersonToDeleteLightsFrom}`
     );
 
     dispatch({
