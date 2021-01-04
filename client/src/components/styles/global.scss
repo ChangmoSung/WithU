@@ -32,6 +32,8 @@ img {
 
 .wrapper {
   width: 45%;
+  height: 60%;
+  overflow: auto;
   margin: 0 auto;
 
   @include mq1300 {
@@ -44,6 +46,10 @@ img {
 
   @include mq768 {
     width: 80%;
+  }
+
+  @include mq640 {
+    height: 70%;
   }
 }
 
