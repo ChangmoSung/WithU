@@ -43,6 +43,7 @@ img {
   overflow: auto;
   margin: 0 auto;
   border-radius: $borderRadius;
+  box-shadow: 0 0 1rem 0.5rem;
 
   @include mq1300 {
     width: 60%;
@@ -118,6 +119,7 @@ button {
   border-radius: $borderRadius;
   padding: 1.5rem;
   overflow: auto;
+  box-shadow: 0 0 1rem 0.5rem;
 
   .closeModalButton {
     position: absolute;

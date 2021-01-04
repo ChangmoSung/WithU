@@ -14,6 +14,23 @@ nav {
     list-style: none;
     margin: 0 auto;
     padding: 0;
+    width: 45%;
+
+    @include mq1300 {
+      width: 60%;
+    }
+
+    @include mq1000 {
+      width: 70%;
+    }
+
+    @include mq768 {
+      width: 80%;
+    }
+
+    @include mq640 {
+      height: 70%;
+    }
 
     li {
       background: $secondaryBlue;

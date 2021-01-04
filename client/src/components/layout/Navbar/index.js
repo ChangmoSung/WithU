@@ -19,7 +19,7 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
     <Fragment>
       {isAuthenticated && !loading && isNavVisible && (
         <nav>
-          <ul className="wrapper">
+          <ul>
             <li>
               <Link
                 to="guide"
