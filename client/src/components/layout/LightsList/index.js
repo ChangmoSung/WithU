@@ -21,7 +21,7 @@ const LightsList = ({ isAuthenticated, lights, getLights, deleteLights }) => {
   return (
     <div className="container">
       <div className="wrapper lightsList">
-        <h2>My lights</h2>
+        <h2>My Lights</h2>
         {lights.length ? (
           lights.map(({ sender, senderEmail, lightsFromThisSender }, i) => (
             <Fragment key={i}>

@@ -22,6 +22,11 @@ const SignUpPage = ({ signUp, isAuthenticated }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    if (password.length < 3) {
+      alert("Password must be at least 3 characters");
+      return;
+    }
+
     if (password === password2) {
       signUp({ firstName, lastName, email, password });
     } else {

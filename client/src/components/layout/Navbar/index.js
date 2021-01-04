@@ -46,9 +46,12 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
             </li>
             <li>
               <button
-                onClick={() =>
-                  window.confirm("Would you like to sign out?") && signOut()
-                }
+                onClick={() => {
+                  if (window.confirm("Would you like to sign out?")) {
+                    signOut();
+                    toggleNav(false);
+                  }
+                }}
               >
                 Sign out
               </button>
