@@ -33,3 +33,9 @@
     @content;
   }
 }
+
+@mixin mqHeight870 {
+  @media (max-height: 870px) {
+    @content;
+  }
+}

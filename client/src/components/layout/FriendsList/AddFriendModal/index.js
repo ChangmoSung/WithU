@@ -15,7 +15,7 @@ const AddFriendModal = ({ toggleIsAddFriendModalVisible, addFriend }) => {
   };
 
   return (
-    <div className="modal">
+    <div className="modal addFriendsModal">
       <h2>Add friends</h2>
       <button
         className="closeModalButton"

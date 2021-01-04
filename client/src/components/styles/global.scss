@@ -4,6 +4,12 @@
 html {
   font-size: 62.5%;
   font-family: "Open Sans", sans-serif;
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 .container {
@@ -15,6 +21,7 @@ html {
   width: 100%;
   background-color: $primaryBlue;
   color: #ffffff;
+  min-height: -webkit-fill-available;
 
   @include mq640 {
     font-size: 1.8rem;
