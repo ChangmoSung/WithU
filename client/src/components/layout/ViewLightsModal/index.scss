@@ -13,10 +13,13 @@
 
     li {
       margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
 
       button {
         margin-left: 2rem;
         float: right;
+        padding: 0.3rem 1rem;
 
         @include mq375 {
           margin-left: 1rem;
