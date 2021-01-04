@@ -22,7 +22,7 @@ const LightsList = ({ isAuthenticated, lights, getLights, deleteLights }) => {
     <div className="container">
       <div className="wrapper lightsList">
         <h2>My lights</h2>
-        {lights &&
+        {lights.length ? (
           lights.map(({ sender, senderEmail, lightsFromThisSender }, i) => (
             <Fragment key={i}>
               <div className="individualLight">
@@ -61,7 +61,10 @@ const LightsList = ({ isAuthenticated, lights, getLights, deleteLights }) => {
                 />
               )}
             </Fragment>
-          ))}
+          ))
+        ) : (
+          <p>You don't have any lights at the moment :)</p>
+        )}
       </div>
     </div>
   );

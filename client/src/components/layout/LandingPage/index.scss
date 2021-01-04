@@ -16,6 +16,10 @@
     height: 75%;
   }
 
+  @include mq450 {
+    height: 65%;
+  }
+
   form {
     display: flex;
     flex-direction: column;

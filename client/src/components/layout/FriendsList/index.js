@@ -41,7 +41,7 @@ const FriendsList = ({
           >
             Add friends
           </button>
-          {friendsList && (
+          {friendsList.length ? (
             <Fragment>
               {friendsList.map(({ firstName, lastName, email }, i) => (
                 <div key={i} className="individualFriend">
@@ -82,6 +82,8 @@ const FriendsList = ({
                 />
               )}
             </Fragment>
+          ) : (
+            <p>Add friends to show how you feel about them :)</p>
           )}
         </div>
       </div>
