@@ -6,8 +6,6 @@
   flex-direction: column;
   align-items: center;
   border: 1px solid $secondaryBlue;
-  border-radius: $borderRadius;
-  color: $primaryBlue;
 
   h1,
   p {
@@ -22,6 +20,7 @@
     display: flex;
     flex-direction: column;
     width: 60%;
+    margin-bottom: 4rem;
 
     input {
       margin-bottom: 1.5rem;
@@ -42,6 +41,6 @@
 
   a {
     color: $secondaryBlue;
-    margin: 4rem 0;
+    margin-bottom: 4rem;
   }
 }
