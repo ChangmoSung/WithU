@@ -41,9 +41,8 @@ const FriendsList = ({
           >
             Add friends
           </button>
-          {friendsList.length ? (
-            <Fragment>
-              {friendsList.map(({ firstName, lastName, email }, i) => (
+          {friendsList.length
+            ? friendsList.map(({ firstName, lastName, email }, i) => (
                 <div key={i} className="individualFriend">
                   <span>{firstName}</span>
                   <div className="buttonsContainer">
@@ -69,20 +68,20 @@ const FriendsList = ({
                     </button>
                   </div>
                 </div>
-              ))}
-              {isAddFriendModalVisible && (
-                <AddFriendModal
-                  toggleIsAddFriendModalVisible={toggleIsAddFriendModalVisible}
-                />
-              )}
-              {isSendLightModalVisible && (
-                <SendLightModal
-                  toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
-                  receiverInfo={receiverInfo}
-                />
-              )}
-            </Fragment>
-          ) : (
+              ))
+            : null}
+          {isAddFriendModalVisible && (
+            <AddFriendModal
+              toggleIsAddFriendModalVisible={toggleIsAddFriendModalVisible}
+            />
+          )}
+          {isSendLightModalVisible && (
+            <SendLightModal
+              toggleIsSendLightModalVisible={toggleIsSendLightModalVisible}
+              receiverInfo={receiverInfo}
+            />
+          )}
+          {!friendsList.length && (
             <p>Add friends to show how you feel about them :)</p>
           )}
         </div>
