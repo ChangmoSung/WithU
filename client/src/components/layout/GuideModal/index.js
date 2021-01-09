@@ -1,14 +1,9 @@
 import React, { useState, Fragment } from "react";
 import "./index.scss";
-import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import MeaningOfLights from "./MeaningOfLights/index.js";
 
-const GuideModal = ({ isAuthenticated }) => {
+const GuideModal = () => {
   const [isMeaningOfLightsVisible, showMeaningOfLights] = useState(false);
-
-  if (!isAuthenticated) return <Redirect to="/" />;
 
   return (
     <Fragment>
@@ -39,12 +34,4 @@ const GuideModal = ({ isAuthenticated }) => {
   );
 };
 
-GuideModal.propTypes = {
-  isAuthenticated: PropTypes.bool,
-};
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps)(GuideModal);
+export default GuideModal;

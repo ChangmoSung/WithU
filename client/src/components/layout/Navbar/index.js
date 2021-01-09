@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { signOut } from "../../../actions/auth";
 
-const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
+const Navbar = ({ signOut }) => {
   useEffect(() => {
     if (window.innerWidth <= 640) {
       toggleNav(false);
@@ -17,7 +17,7 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
 
   return (
     <Fragment>
-      {isAuthenticated && !loading && isNavVisible && (
+      {isNavVisible && (
         <nav>
           <ul>
             <li>
@@ -59,7 +59,7 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
           </ul>
         </nav>
       )}
-      {isAuthenticated && !loading && isNavOpenerVisible && (
+      {isNavOpenerVisible && (
         <button className="navOpener" onClick={() => toggleNav(!isNavVisible)}>
           Open
         </button>
@@ -70,11 +70,6 @@ const Navbar = ({ signOut, auth: { isAuthenticated, loading } }) => {
 
 Navbar.propTypes = {
   signOut: PropTypes.func,
-  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, { signOut })(Navbar);
+export default connect(null, { signOut })(Navbar);

@@ -22,7 +22,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Navbar />
+        <PrivateRoute component={Navbar} />
         <div className="container">
           <Route exact path="/" component={LandingPage} />
           <Alert />
